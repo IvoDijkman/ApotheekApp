@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Business.Objects
+namespace ApotheekApp.Domain.Models
 {
     public class Medicine
     {
