@@ -1,12 +1,14 @@
-﻿using System;
+﻿using ApotheekApp.Business.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Business.Functions
+namespace Business.Services
 {
-    internal class MedicineServices
+    public class MedicineServices : IMedicineService
     {
+
     }
 }
