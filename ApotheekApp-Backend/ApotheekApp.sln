@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApotheekApp.Domain", "Domai
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApotheekApp.Api", "ApotheekApp.Api\ApotheekApp.Api.csproj", "{CA5CBD3E-56ED-4D44-84F0-E7218B5452F3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApotheekApp.Data", "ApotheekApp.Data\ApotheekApp.Data.csproj", "{FB72198A-2D8F-40D2-A7A1-6A00D8B2D7F1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApotheekApp.Data", "ApotheekApp.Data\ApotheekApp.Data.csproj", "{FB72198A-2D8F-40D2-A7A1-6A00D8B2D7F1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApotheekApp.Tests", "Tests\ApotheekApp.Tests.csproj", "{D7DA6902-CD19-4843-9196-E074D0E4678D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{FB72198A-2D8F-40D2-A7A1-6A00D8B2D7F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FB72198A-2D8F-40D2-A7A1-6A00D8B2D7F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FB72198A-2D8F-40D2-A7A1-6A00D8B2D7F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7DA6902-CD19-4843-9196-E074D0E4678D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7DA6902-CD19-4843-9196-E074D0E4678D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7DA6902-CD19-4843-9196-E074D0E4678D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7DA6902-CD19-4843-9196-E074D0E4678D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

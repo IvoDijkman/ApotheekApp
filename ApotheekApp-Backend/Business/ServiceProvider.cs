@@ -15,13 +15,18 @@ namespace ApotheekApp.Business
     {
         public static void BuildStandard(this IServiceCollection n)
         {
-            string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=ApotheekDatabase;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=True";
+            string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=ApotheekApp_Database;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=True";
             InitServices(n);
             n.AddDbContext<DataContext>(options => options.UseSqlServer(connectionString).UseLazyLoadingProxies());
         }
 
 
-        public static void BuildTest(this IServiceCollection n) => InitServices(n);
+        public static void BuildTest(this IServiceCollection n)
+        {
+            string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=ApotheekApp_TestDatabase;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=True";
+            InitServices(n);
+            n.AddDbContext<DataContext>(options => options.UseSqlServer(connectionString).UseLazyLoadingProxies());
+        }
 
 
 
