@@ -1,10 +1,4 @@
-﻿using ApotheekApp.Domain.Interfaces;
-using ApotheekApp.Domain.Models;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-
-namespace ApotheekApp.Api.Controllers
+﻿namespace ApotheekApp.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -39,7 +33,6 @@ namespace ApotheekApp.Api.Controllers
             IEnumerable<Medicine>? medicines = await _medicineService.GetAllByClientAsync(client);
 
             if (medicines == null) return BadRequest("No medicines found");
-
 
             return Ok(medicines);
         }
