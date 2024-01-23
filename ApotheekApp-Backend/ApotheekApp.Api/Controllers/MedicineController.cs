@@ -1,5 +1,5 @@
-﻿using ApotheekApp.Business.Interfaces;
-using Business.Objects;
+﻿using ApotheekApp.Domain.Interfaces;
+using ApotheekApp.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ApotheekApp.Api.Controllers
@@ -20,7 +20,7 @@ namespace ApotheekApp.Api.Controllers
             // Get user
             // If user null return error
 
-            IEnumerable<Medicine> medicines = await _medicineService.GetAllAsync();
+            IEnumerable<Medicine> medicines = _medicineService.GetAllAsync();
 
             if (medicines.Count() < 1) return BadRequest("No medicines found");
 
@@ -34,7 +34,7 @@ namespace ApotheekApp.Api.Controllers
             // If user null return error
 
             // Pass user as parameter
-            IEnumerable<Medicine> medicines = await _medicineService.GetAllByUserAsync();
+            IEnumerable<Medicine> medicines = _medicineService.GetAllByUserAsync();
 
             if (medicines.Count() < 1) return BadRequest("No medicines found");
 
@@ -49,7 +49,7 @@ namespace ApotheekApp.Api.Controllers
             // If user null return error
 
             // Pass user as parameter
-            Medicine medicine = await _medicineService.GetByIdAsync(id);
+            Medicine medicine = _medicineService.GetByIdAsync(id);
             if (medicine == null) return BadRequest("No medicine found");
 
 

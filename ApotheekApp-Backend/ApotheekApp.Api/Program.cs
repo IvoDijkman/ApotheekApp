@@ -1,6 +1,8 @@
-using ApotheekApp.Business.Interfaces;
+
 using ApotheekApp.Domain.Interfaces;
-using Business.Functions;
+using ApotheekApp.Business.Services;
+using ApotheekApp.Domain.Models;
+
 
 namespace ApotheekApp.Api
 {

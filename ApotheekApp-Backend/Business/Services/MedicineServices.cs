@@ -1,7 +1,12 @@
-﻿using ApotheekApp.Business.Interfaces;
-using Business.Objects;
+﻿using ApotheekApp.Domain.Interfaces;
+using ApotheekApp.Domain.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Business.Functions
+namespace ApotheekApp.Business.Services
 {
     public class MedicineServices : IMedicineServices
     {
@@ -16,7 +21,7 @@ namespace Business.Functions
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Medicine> GetByIdAsync(int id)
+        public Medicine GetByIdAsync(int id)
         {
             // Return medicine by id
             throw new NotImplementedException();

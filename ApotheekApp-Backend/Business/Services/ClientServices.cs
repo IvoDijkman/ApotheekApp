@@ -1,12 +1,12 @@
 ﻿using ApotheekApp.Domain.Interfaces;
-using Business.Objects;
+using ApotheekApp.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Business.Functions
+namespace ApotheekApp.Business.Services
 {
     public class ClientServices : IClientService
     {

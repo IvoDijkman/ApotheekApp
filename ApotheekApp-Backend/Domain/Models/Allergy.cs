@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace ApotheekApp.Domain.Models
 {
-    public class Employee : AppUser
+    public class Allergy
     {
-        public string Name { get; set; }
-        public string LastName { get; set; }
+        public int Id { get; set; }
+        public string Description { get; set; }
     }
 }
