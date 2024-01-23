@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNet.Identity.EntityFramework;
-
-namespace ApotheekApp.Domain.Models
+﻿namespace ApotheekApp.Domain.Models
 {
     public class Employee : IdentityUser
     {
