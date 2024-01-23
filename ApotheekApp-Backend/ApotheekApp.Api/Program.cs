@@ -1,4 +1,9 @@
 
+using ApotheekApp.Domain.Interfaces;
+using ApotheekApp.Business.Services;
+using ApotheekApp.Domain.Models;
+
+
 namespace ApotheekApp.Api
 {
     public class Program
@@ -13,6 +18,7 @@ namespace ApotheekApp.Api
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            builder.Services.AddScoped<IMedicineServices, MedicineServices>();
 
             var app = builder.Build();
 

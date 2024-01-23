@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ApotheekApp.Domain.Models;
 
-namespace ApotheekApp.Business.Interfaces
+
+namespace ApotheekApp.Domain.Interfaces
 {
-    public interface IClientService
+    public interface IEmployeeServices
     {
 
     }
