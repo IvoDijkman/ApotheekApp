@@ -1,5 +1,5 @@
-
 using ApotheekApp.Business.Interfaces;
+using ApotheekApp.Domain.Interfaces;
 using Business.Functions;
 
 namespace ApotheekApp.Api
@@ -17,6 +17,7 @@ namespace ApotheekApp.Api
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
             builder.Services.AddScoped<IMedicineServices, MedicineServices>();
+            builder.Services.AddScoped<IClientService, ClientServices>();
 
             var app = builder.Build();
 
@@ -30,7 +31,6 @@ namespace ApotheekApp.Api
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
-
 
             app.MapControllers();
 
