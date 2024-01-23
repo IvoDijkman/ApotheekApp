@@ -1,15 +1,10 @@
-﻿using ApotheekApp.Business.Interfaces;
+﻿using ApotheekApp.Business.Services;
 using ApotheekApp.Data;
-using Business.Services;
+using ApotheekApp.Domain.Interfaces;
+using ApotheekApp.Domain.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.AspNet.Identity.EntityFramework;
-using ApotheekApp.Domain.Models;
 
 namespace ApotheekApp.Business
 {
@@ -26,7 +21,6 @@ namespace ApotheekApp.Business
             .AddDefaultTokenProviders();
         }
 
-
         public static void BuildTest(this IServiceCollection n)
         {
             string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=ApotheekApp_TestDatabase;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=True";
@@ -34,13 +28,11 @@ namespace ApotheekApp.Business
             n.AddDbContext<DataContext>(options => options.UseSqlServer(connectionString).UseLazyLoadingProxies());
         }
 
-
-
         private static void InitServices(IServiceCollection services)
         {
-            services.AddScoped<IClientService, ClientServices>();
-            services.AddScoped<IEmployeeService, EmployeeServices>();
-            services.AddScoped<IMedicineService, MedicineServices>();
+            services.AddScoped<IClientService, ClientService>();
+            services.AddScoped<IEmployeeService, EmployeeService>();
+            services.AddScoped<IMedicineService, MedicineService>();
         }
     }
 }

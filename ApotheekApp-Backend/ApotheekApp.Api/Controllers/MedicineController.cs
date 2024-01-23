@@ -8,8 +8,9 @@ namespace ApotheekApp.Api.Controllers
     [ApiController]
     public class MedicineController : ControllerBase
     {
-        private readonly IMedicineServices _medicineService;
-        public MedicineController(IMedicineServices medicineService)
+        private readonly IMedicineService _medicineService;
+
+        public MedicineController(IMedicineService medicineService)
         {
             _medicineService = medicineService;
         }
@@ -38,7 +39,6 @@ namespace ApotheekApp.Api.Controllers
 
             if (medicines.Count() < 1) return BadRequest("No medicines found");
 
-
             return Ok(medicines);
         }
 
@@ -51,7 +51,6 @@ namespace ApotheekApp.Api.Controllers
             // Pass user as parameter
             Medicine medicine = _medicineService.GetByIdAsync(id);
             if (medicine == null) return BadRequest("No medicine found");
-
 
             return Ok(medicine.Warnings);
         }
