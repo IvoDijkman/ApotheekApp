@@ -8,6 +8,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNet.Identity.EntityFramework;
+using ApotheekApp.Domain.Models;
 
 namespace ApotheekApp.Business
 {
@@ -18,6 +20,10 @@ namespace ApotheekApp.Business
             string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=ApotheekApp_Database;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=True";
             InitServices(n);
             n.AddDbContext<DataContext>(options => options.UseSqlServer(connectionString).UseLazyLoadingProxies());
+
+            n.AddIdentity<AppUser, IdentityRole>()
+            .AddEntityFrameworkStores<DataContext>()
+            .AddDefaultTokenProviders();
         }
 
 

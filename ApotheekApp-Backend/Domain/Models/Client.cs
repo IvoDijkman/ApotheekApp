@@ -12,11 +12,11 @@ namespace ApotheekApp.Domain.Models
     {
         public string Name { get; set; }
         public string LastName { get; set; }
-        public DateOnly DateOfBirth { get; set; }
+        public DateTime DateOfBirth { get; set; }
 
 
 
-        public List<string> Allergies { get; set; }
-        public List<Medicine> Medicines { get; set; }
+        public virtual List<Allergy> Allergies { get; set; }
+        public virtual List<Medicine> Medicines { get; set; }
     }
 }
