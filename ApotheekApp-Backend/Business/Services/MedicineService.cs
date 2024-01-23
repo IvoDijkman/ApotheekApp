@@ -1,9 +1,6 @@
-﻿using ApotheekApp.Domain.Interfaces;
-using ApotheekApp.Domain.Models;
-
-namespace ApotheekApp.Business.Services
+﻿namespace ApotheekApp.Business.Services
 {
-    public class MedicineServices : IMedicineServices
+    public class MedicineService : IMedicineService
     {
         private IMedicineRepository _medicineRepository;
         public MedicineServices(IMedicineRepository medicineRepository)
