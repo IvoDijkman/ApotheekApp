@@ -1,68 +1,60 @@
 ﻿using ApotheekApp.Domain.Interfaces;
 using ApotheekApp.Domain.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ApotheekApp.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class MedicineController : ControllerBase
+    public class MedicineController : BaseController
     {
         private readonly IMedicineServices _medicineService;
-        public MedicineController(IMedicineServices medicineService)
+        private readonly UserManager<AppUser> _userManager;
+        public MedicineController(IMedicineServices medicineService, UserManager<AppUser> userManager)
         {
             _medicineService = medicineService;
+            _userManager = userManager;
         }
 
-        [HttpGet("GetAll")]
+        [HttpGet("GetAll"), Authorize]
         public async Task<IActionResult> GetAll()
         {
-            // Get user
-            // If user null return error
+            IEnumerable<Medicine>? medicines = await _medicineService.GetAllAsync();
 
-            IEnumerable<Medicine> medicines = _medicineService.GetAllAsync();
-
-            if (medicines.Count() < 1) return BadRequest("No medicines found");
+            if (medicines == null) return BadRequest("No medicines found");
 
             return Ok(medicines);
         }
 
-        [HttpGet("GetAllByUser")]
+        [HttpGet("GetAllByUser"), Authorize]
         public async Task<IActionResult> GetAllByUser()
         {
-            // Get user
-            // If user null return error
+            Client currentUser = await _userManager.GetUserAsync(User);
+            if (user == null) return NotFound("User not found!");
 
             // Pass user as parameter
-            IEnumerable<Medicine> medicines = _medicineService.GetAllByUserAsync();
+            IEnumerable<Medicine>? medicines = await _medicineService.GetAllByUserAsync(user);
 
-            if (medicines.Count() < 1) return BadRequest("No medicines found");
+            if (medicines == null) return BadRequest("No medicines found");
 
 
             return Ok(medicines);
         }
 
-        [HttpGet("GetWarnings/{id}")]
+        [HttpGet("GetWarnings/{id}"), Authorize]
         public async Task<IActionResult> GetWarnings(int id)
         {
-            // Get user
-            // If user null return error
-
-            // Pass user as parameter
-            Medicine medicine = _medicineService.GetByIdAsync(id);
+            Medicine? medicine = await _medicineService.GetByIdAsync(id);
             if (medicine == null) return BadRequest("No medicine found");
-
 
             return Ok(medicine.Warnings);
         }
 
-        [HttpDelete("Delete/{id}")]
+        [HttpDelete("Delete/{id}"), Authorize]
         public async Task<IActionResult> Delete(int id)
         {
-            // Get user
-            // If user null return error
-
-            // Pass user as parameter
             await _medicineService.Delete(id);
 
             return Ok();

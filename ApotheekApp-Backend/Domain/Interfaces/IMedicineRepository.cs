@@ -2,7 +2,7 @@
 
 namespace ApotheekApp.Domain.Interfaces
 {
-    public interface IMedicineServices
+    public interface IMedicineRepository
     {
         Task<IEnumerable<Medicine>?> GetAllAsync();
         Task<IEnumerable<Medicine>?> GetAllByUserAsync(AppUser user); // Appuser user (pass as parameter)

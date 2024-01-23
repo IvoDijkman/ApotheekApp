@@ -1,36 +1,35 @@
 ﻿using ApotheekApp.Domain.Interfaces;
 using ApotheekApp.Domain.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ApotheekApp.Business.Services
 {
     public class MedicineServices : IMedicineServices
     {
-        public IEnumerable<Medicine> GetAllAsync()
+        private IMedicineRepository _medicineRepository;
+        public MedicineServices(IMedicineRepository medicineRepository)
         {
-            // Return all medicine
-            throw new NotImplementedException();
+            _medicineRepository = medicineRepository;
         }
-        public IEnumerable<Medicine> GetAllByUserAsync() // Appuser user (pass as parameter)
+        public async Task<IEnumerable<Medicine>?> GetAllAsync()
         {
-            // Return all medicine of a specific user based on id
-            throw new NotImplementedException();
+            IEnumerable<Medicine>? medicines = await _medicineRepository.GetAllAsync();
+            return medicines;
+        }
+        public async Task<IEnumerable<Medicine>?> GetAllByUserAsync(AppUser user)
+        {
+            IEnumerable<Medicine>? medicines = await _medicineRepository.GetAllByUserAsync(user);
+            return medicines;
         }
 
-        public Medicine GetByIdAsync(int id)
+        public async Task<Medicine?> GetByIdAsync(int id)
         {
-            // Return medicine by id
-            throw new NotImplementedException();
+            Medicine? medicine = await _medicineRepository.GetByIdAsync(id);
+            return medicine;
         }
 
-        public Task Delete(int id) // Appuser user (pass as parameter)
+        public async Task Delete(int id)
         {
-            // Delete medicine of a specific user based on id
-            throw new NotImplementedException();
+            await _medicineRepository.Delete(id);
         }
     }
 }

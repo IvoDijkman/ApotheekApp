@@ -1,12 +1,40 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ApotheekApp.Domain.Interfaces;
+using ApotheekApp.Domain.Models;
+using System.Data.Entity;
 
 namespace ApotheekApp.Data.Repositories
 {
-    internal class MedicineRepository
+    public class MedicineRepository : IMedicineRepository
     {
+        private readonly DataContext _context;
+        public MedicineRepository(DataContext context)
+        {
+            _context = context;
+        }
+        public async Task Delete(int id)
+        {
+            Medicine medicine = await _context.Medicines.FirstOrDefaultAsync(m => m.Id == id);
+
+            if (medicine != null)
+            {
+                _context.Medicines.Remove(medicine);
+                await _context.SaveChangesAsync();
+            }
+        }
+
+        public async Task<IEnumerable<Medicine>?> GetAllAsync()
+        {
+            return await _context.Medicines.ToListAsync();
+        }
+
+        public async Task<IEnumerable<Medicine>?> GetAllByUserAsync(AppUser user)
+        {
+            return user.med
+        }
+
+        public async Task<Medicine?> GetByIdAsync(int id)
+        {
+            return _context.Medicines.FirstOrDefault(m => m.Id == id);
+        }
     }
 }
