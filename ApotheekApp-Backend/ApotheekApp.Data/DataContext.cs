@@ -23,6 +23,10 @@ namespace ApotheekApp.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Client>().HasKey(x => x.Id);
+            modelBuilder.Entity<Client>().HasOne(x => x.Medicines).WithMany();
+            modelBuilder.Entity<Employee>().HasKey(x => x.Id);
+            modelBuilder.Entity<Medicine>().HasKey(x => x.Id);
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
