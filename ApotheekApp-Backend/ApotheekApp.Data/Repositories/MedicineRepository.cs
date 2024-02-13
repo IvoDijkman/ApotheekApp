@@ -1,10 +1,9 @@
-﻿using ApotheekApp.Domain.Interfaces;
-using ApotheekApp.Domain.Models;
+﻿using ApotheekApp.Domain.Models;
 using System.Data.Entity;
 
 namespace ApotheekApp.Data.Repositories
 {
-    public class MedicineRepository : IMedicineRepository
+    public class MedicineRepository
     {
         private readonly DataContext _context;
         public MedicineRepository(DataContext context)
@@ -27,9 +26,9 @@ namespace ApotheekApp.Data.Repositories
             return await _context.Medicines.ToListAsync();
         }
 
-        public async Task<IEnumerable<Medicine>?> GetAllByUserAsync(AppUser user)
+        public async Task<IEnumerable<Medicine>?> GetAllByUserAsync(Client client)
         {
-            return user.med
+            return client.Medicines;
         }
 
         public async Task<Medicine?> GetByIdAsync(int id)

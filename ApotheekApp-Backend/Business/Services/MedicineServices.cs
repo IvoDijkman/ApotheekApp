@@ -15,9 +15,9 @@ namespace ApotheekApp.Business.Services
             IEnumerable<Medicine>? medicines = await _medicineRepository.GetAllAsync();
             return medicines;
         }
-        public async Task<IEnumerable<Medicine>?> GetAllByUserAsync(AppUser user)
+        public async Task<IEnumerable<Medicine>?> GetAllByClientAsync(Client client)
         {
-            IEnumerable<Medicine>? medicines = await _medicineRepository.GetAllByUserAsync(user);
+            IEnumerable<Medicine>? medicines = await _medicineRepository.GetAllByClientAsync(client);
             return medicines;
         }
 
