@@ -1,43 +1,40 @@
-﻿using ApotheekApp.Domain.Interfaces;
+﻿using ApotheekApp.Data.Repositories;
+using ApotheekApp.Domain.Interfaces;
 using ApotheekApp.Domain.Models;
 
 namespace ApotheekApp.Business.Services
 {
-    public class ClientService : IClientService
+    public class ClientService(ClientRepository clientRepository) : IClientService
     {
-        public Task<Client> CreateClientAsync(Client client)
+        private readonly ClientRepository _clientRepository = clientRepository;
+
+        public async Task<Client> CreateClientAsync(Client client)
         {
-            throw new NotImplementedException();
+            ArgumentNullException.ThrowIfNull(client);
+            await _clientRepository.CreateClientAsync(client);
+            await _clientRepository.SaveChanges();
+            return client;
         }
 
-        public Task DeleteClientAsync(int id)
+        public async Task DeleteClientAsync(int id)
         {
-            throw new NotImplementedException();
+            _clientRepository.DeleteClientAsync(id);
+            await _clientRepository.SaveChanges();
         }
 
-        public IEnumerable<Client> GetAllClients()
-        {
-            throw new NotImplementedException();
-        }
+        public IEnumerable<Client> GetAllClients() => _clientRepository.GetAllClients();
 
-        public Client GetClientByIdAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
+        public Client GetClientByIdAsync(int id) => _clientRepository.GetClientByIdAsync(id);
 
-        public Client GetClientByNameAsync(string name)
-        {
-            throw new NotImplementedException();
-        }
+        public Client GetClientByNameAsync(string lastname, DateTime dob, string? firstname) =>
+            _clientRepository.GetClientByNameAsync(lastname, dob, firstname);
 
-        public IEnumerable<Client> SearchClients(string query)
+        public async Task<Client> UpdateClientAsync(Client client)
         {
-            throw new NotImplementedException();
-        }
-
-        public Task<Client> UpdateClientAsync(Client client)
-        {
-            throw new NotImplementedException();
+            ArgumentNullException.ThrowIfNull(client);
+            _clientRepository.UpdateClientAsync(client);
+            await _clientRepository.SaveChanges();
+            return client;
         }
     }
 }
