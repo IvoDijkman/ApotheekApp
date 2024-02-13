@@ -1,7 +1,4 @@
-﻿using ApotheekApp.Domain.Models;
-using System.Data.Entity;
-
-namespace ApotheekApp.Data.Repositories
+﻿namespace ApotheekApp.Data.Repositories
 {
     public class MedicineRepository
     {

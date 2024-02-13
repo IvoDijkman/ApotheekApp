@@ -1,46 +1,41 @@
 ﻿using ApotheekApp.Domain.Interfaces;
 using ApotheekApp.Domain.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ApotheekApp.Business.Services
 {
-    public class ClientServices : IClientService
+    public class EmployeeService : IEmployeeService
     {
-        public Task<Client> CreateClientAsync(Client client)
+        public Task<Employee> CreateEmployeeAsync(Employee employee)
         {
             throw new NotImplementedException();
         }
 
-        public Task DeleteClientAsync(int id)
+        public Task DeleteEmployeeAsync(int id)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Client> GetAllClients()
+        public IEnumerable<Employee> GetAllEmployees()
         {
             throw new NotImplementedException();
         }
 
-        public Client GetClientByIdAsync(int id)
+        public Employee GetEmployeeByIdAsync(int id)
         {
             throw new NotImplementedException();
         }
 
-        public Client GetClientByNameAsync(string name)
+        public Employee GetEmployeeByNameAsync(string name)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Client> SearchClients(string query)
+        public IEnumerable<Employee> SearchEmployees(string query)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Client> UpdateClientAsync(Client client)
+        public Task<Employee> UpdateEmployeeAsync(Employee employee)
         {
             throw new NotImplementedException();
         }
