@@ -26,7 +26,7 @@ namespace ApotheekApp.Data.Repositories
             return await _context.Medicines.ToListAsync();
         }
 
-        public async Task<IEnumerable<Medicine>?> GetAllByUserAsync(Client client)
+        public async Task<IEnumerable<Medicine>?> GetAllByClientAsync(Client client)
         {
             return client.Medicines;
         }
