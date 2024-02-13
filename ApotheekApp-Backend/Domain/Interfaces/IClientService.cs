@@ -5,48 +5,43 @@ namespace ApotheekApp.Domain.Interfaces
     public interface IClientService
     {
         /// <summary>
-        /// Get Clients by Id
+        /// Get Clients by Id.
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
         public Client GetClientByIdAsync(int id);
 
         /// <summary>
-        /// Get Clients by Client name
+        /// Search Clients by lastname, dob and ?firstname.
         /// </summary>
-        /// <param name="name"></param>
+        /// <param name="lastname"></param>
+        /// <param name="dob"></param>
+        /// <param name="firstname"></param>
         /// <returns></returns>
-        public Client GetClientByNameAsync(string name);
+        public Client GetClientByNameAsync(string lastname, DateTime dob, string? firstname);
 
         /// <summary>
-        /// Create a new Client
+        /// Create a new Client.
         /// </summary>
         /// <param name="client"></param>
         /// <returns></returns>
         public Task<Client> CreateClientAsync(Client client);
 
         /// <summary>
-        /// Update an existing Client
+        /// Update an existing Client.
         /// </summary>
         /// <param name="client"></param>
         /// <returns></returns>
         public Task<Client> UpdateClientAsync(Client client);
 
         /// <summary>
-        /// Search Clients
-        /// </summary>
-        /// <param name="query"></param>
-        /// <returns></returns>
-        public IEnumerable<Client> SearchClients(string query);
-
-        /// <summary>
-        /// Get list of all Clients
+        /// Get list of all Clients.
         /// </summary>
         /// <returns></returns>
         public IEnumerable<Client> GetAllClients();
 
         /// <summary>
-        /// Delete Client by Id
+        /// Delete Client by Id.
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
