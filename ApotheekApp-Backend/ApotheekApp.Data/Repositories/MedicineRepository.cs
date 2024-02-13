@@ -1,6 +1,10 @@
-﻿namespace ApotheekApp.Data.Repositories
+﻿using ApotheekApp.Domain.Interfaces;
+using ApotheekApp.Domain.Models;
+using Microsoft.EntityFrameworkCore;
+
+namespace ApotheekApp.Data.Repositories
 {
-    public class MedicineRepository
+    public class MedicineRepository : IMedicineRepository
     {
         private readonly DataContext _context;
         public MedicineRepository(DataContext context)
@@ -9,7 +13,7 @@
         }
         public async Task Delete(int id)
         {
-            Medicine medicine = await _context.Medicines.FirstOrDefaultAsync(m => m.Id == id);
+            Medicine? medicine = await _context.Medicines.FirstOrDefaultAsync(m => m.Id == id);
 
             if (medicine != null)
             {
@@ -30,7 +34,7 @@
 
         public async Task<Medicine?> GetByIdAsync(int id)
         {
-            return _context.Medicines.FirstOrDefault(m => m.Id == id);
+            return await _context.Medicines.FirstOrDefaultAsync(m => m.Id == id);
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace ApotheekApp.Domain.Models
+﻿using Microsoft.AspNetCore.Identity;
+
+namespace ApotheekApp.Domain.Models
 {
     public class Client : IdentityUser
     {

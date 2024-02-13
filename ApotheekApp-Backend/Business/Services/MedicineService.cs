@@ -1,9 +1,12 @@
-﻿namespace ApotheekApp.Business.Services
+﻿using ApotheekApp.Domain.Interfaces;
+using ApotheekApp.Domain.Models;
+
+namespace ApotheekApp.Business.Services
 {
     public class MedicineService : IMedicineService
     {
         private IMedicineRepository _medicineRepository;
-        public MedicineServices(IMedicineRepository medicineRepository)
+        public MedicineService(IMedicineRepository medicineRepository)
         {
             _medicineRepository = medicineRepository;
         }
@@ -18,7 +21,7 @@
             return medicines;
         }
 
-        public async Task<Medicine?> GetByIdAsync(int id)
+        public async Task<Medicine> GetByIdAsync(int id)
         {
             Medicine? medicine = await _medicineRepository.GetByIdAsync(id);
             return medicine;

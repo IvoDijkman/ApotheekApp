@@ -1,12 +1,19 @@
-﻿namespace ApotheekApp.Api.Controllers
+﻿using ApotheekApp.Business.Services;
+using ApotheekApp.Domain.Interfaces;
+using ApotheekApp.Domain.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+
+namespace ApotheekApp.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class MedicineController : BaseController
     {
-        private readonly IMedicineServices _medicineService;
+        private readonly IMedicineService _medicineService;
         private readonly UserManager<Client> _userManager;
-        public MedicineController(IMedicineServices medicineService, UserManager<Client> userManager)
+        public MedicineController(MedicineService medicineService, UserManager<Client> userManager)
         {
             _medicineService = medicineService;
             _userManager = userManager;
