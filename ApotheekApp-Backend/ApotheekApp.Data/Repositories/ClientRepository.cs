@@ -2,14 +2,9 @@
 
 namespace ApotheekApp.Data.Repositories
 {
-    public class ClientRepository
+    public class ClientRepository(DataContext dataContext)
     {
-        private readonly DataContext _dataContext;
-
-        public ClientRepository(DataContext dataContext)
-        {
-            _dataContext = dataContext;
-        }
+        private readonly DataContext _dataContext = dataContext;
 
         public async Task<Client> CreateClientAsync(Client client)
         {
