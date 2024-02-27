@@ -1,8 +1,6 @@
-﻿using Microsoft.AspNetCore.Identity;
-
-namespace ApotheekApp.Domain.Models
+﻿namespace ApotheekApp.Domain.Models
 {
-    public class Employee : IdentityUser
+    public class Employee : AppUser
     {
         public virtual string FirstName { get; set; }
         public virtual string LastName { get; set; }
