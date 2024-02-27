@@ -8,7 +8,7 @@
         public string Description { get; set; }
         public string Manual { get; set; }
         public string Type { get; set; }
-        public virtual List<string> Warnings { get; set; }
+        public virtual List<string>? Warnings { get; set; }
 
         public int Stock { get; set; }
     }

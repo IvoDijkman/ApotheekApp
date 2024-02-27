@@ -36,8 +36,8 @@ namespace ApotheekApp.Data
             modelBuilder.Entity<Employee>();
             /*                .HasKey(e => e.Id);*/
 
-            /*            modelBuilder.Entity<Medicine>()
-                            .HasKey(e => e.Id);*/
+            modelBuilder.Entity<Medicine>()
+                .HasKey(e => e.Id);
 
             modelBuilder.Entity<Allergy>()
                 .HasKey(e => e.Id);
@@ -48,17 +48,17 @@ namespace ApotheekApp.Data
                 .HasForeignKey(x => x.ClientId);
             /*                .HasPrincipalKey(x => x.Id);*/
 
-            /*            modelBuilder.Entity<Client>() //TODO Check if this is the correct way of doing it.
-                            .HasMany(x => x.Medicines)
-                            .WithOne()
-                            .HasForeignKey(x => x.ClientId);*/
+            modelBuilder.Entity<Client>() //TODO Check if this is the correct way of doing it.
+                .HasMany(x => x.Medicines)
+                .WithOne()
+                .HasForeignKey(x => x.ClientId);
             /*                .HasPrincipalKey(x => x.Id);*/
 
             modelBuilder.Entity<Client>().Navigation(x => x.Allergies).AutoInclude();
 
             AddClients(modelBuilder);
             AddEmployee(modelBuilder);
-            /*            AddMedicine(modelBuilder);*/
+            AddMedicine(modelBuilder);
             AddAllergy(modelBuilder);
 
             base.OnModelCreating(modelBuilder);
@@ -108,34 +108,34 @@ namespace ApotheekApp.Data
             });
         }
 
-        /*        private static void AddMedicine(ModelBuilder modelBuilder)
+        private static void AddMedicine(ModelBuilder modelBuilder) //TODO fix medicine list not wanting to migrate in.
+        {
+            modelBuilder.Entity<Medicine>(c =>
+            {
+                c.HasData(new Medicine
                 {
-                    modelBuilder.Entity<Medicine>(c =>
-                    {
-                        c.HasData(new Medicine
-                        {
-                            Id = 1,
-                            ClientId = "1",
-                            Name = "Name",
-                            Description = "Description",
-                            Manual = "Manual",
-                            Type = "Type",
-                            Warnings = { "Warning" },
-                            Stock = 5,
-                        });
-                        c.HasData(new Medicine
-                        {
-                            Id = 2,
-                            ClientId = "2",
-                            Name = "Name",
-                            Description = "Description",
-                            Manual = "Manual",
-                            Type = "Type",
-                            Warnings = { "Warning" },
-                            Stock = 12,
-                        });
-                    });
-                }*/
+                    Id = 1,
+                    ClientId = "1",
+                    Name = "Name",
+                    Description = "Description",
+                    Manual = "Manual",
+                    Type = "Type",
+                    //Warnings = { "Warning" },
+                    Stock = 5,
+                });
+                c.HasData(new Medicine
+                {
+                    Id = 2,
+                    ClientId = "2",
+                    Name = "Name",
+                    Description = "Description",
+                    Manual = "Manual",
+                    Type = "Type",
+                    //Warnings = { "Warning" },
+                    Stock = 12,
+                });
+            });
+        }
 
         private static void AddAllergy(ModelBuilder modelBuilder)
         {
