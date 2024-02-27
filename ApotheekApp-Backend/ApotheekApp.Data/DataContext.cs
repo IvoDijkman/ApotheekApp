@@ -33,8 +33,8 @@ namespace ApotheekApp.Data
             modelBuilder.Entity<Client>();
             /*                .HasKey(x => x.Id);*/
 
-            /*            modelBuilder.Entity<Employee>();
-                        *//*                .HasKey(e => e.Id);*/
+            modelBuilder.Entity<Employee>();
+            /*                .HasKey(e => e.Id);*/
 
             /*            modelBuilder.Entity<Medicine>()
                             .HasKey(e => e.Id);*/
@@ -57,7 +57,7 @@ namespace ApotheekApp.Data
             modelBuilder.Entity<Client>().Navigation(x => x.Allergies).AutoInclude();
 
             AddClients(modelBuilder);
-            /*            AddEmployee(modelBuilder);*/
+            AddEmployee(modelBuilder);
             /*            AddMedicine(modelBuilder);*/
             /*            AddAllergy(modelBuilder);*/
 
@@ -89,24 +89,24 @@ namespace ApotheekApp.Data
             });
         }
 
-        /*        private static void AddEmployee(ModelBuilder modelBuilder)
+        private static void AddEmployee(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Employee>(c =>
+            {
+                c.HasData(new Employee
                 {
-                    modelBuilder.Entity<Employee>(c =>
-                    {
-                        c.HasData(new Employee
-                        {
-                            Id = "3",
-                            FirstName = "Name",
-                            LastName = "Lastname",
-                        });
-                        c.HasData(new Employee
-                        {
-                            Id = "4",
-                            FirstName = "Name",
-                            LastName = "Lastname",
-                        });
-                    });
-                }*/
+                    Id = "3",
+                    FirstName = "Name",
+                    LastName = "Lastname",
+                });
+                c.HasData(new Employee
+                {
+                    Id = "4",
+                    FirstName = "Name",
+                    LastName = "Lastname",
+                });
+            });
+        }
 
         /*        private static void AddMedicine(ModelBuilder modelBuilder)
                 {
