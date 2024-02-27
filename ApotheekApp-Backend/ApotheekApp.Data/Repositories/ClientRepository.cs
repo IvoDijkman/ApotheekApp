@@ -12,7 +12,7 @@ namespace ApotheekApp.Data.Repositories
             return client;
         }
 
-        public void DeleteClientAsync(int id)
+        public void DeleteClientAsync(string id)
         {
             Client? toDelete = _dataContext.Set<Client>().Where(x => x.Id == id).FirstOrDefault();
             if (toDelete != null)
@@ -21,7 +21,7 @@ namespace ApotheekApp.Data.Repositories
 
         public IEnumerable<Client> GetAllClients() => _dataContext.Set<Client>();
 
-        public Client GetClientByIdAsync(int id) =>
+        public Client GetClientByIdAsync(string id) =>
             _dataContext.Set<Client>().Where(x => x.Id == id).FirstOrDefault() ?? throw new KeyNotFoundException();
 
         public Client GetClientByNameAsync(string lastname, DateTime dob, string? firstname)
@@ -29,7 +29,7 @@ namespace ApotheekApp.Data.Repositories
             if (firstname == "")
                 return (Client)_dataContext.Set<Client>().Where(x => x.DateOfBirth == dob && x.LastName == lastname);
 
-            return (Client)_dataContext.Set<Client>().Where(x => x.DateOfBirth == dob && x.LastName == lastname && x.Name == firstname);
+            return (Client)_dataContext.Set<Client>().Where(x => x.DateOfBirth == dob && x.LastName == lastname && x.FirstName == firstname);
         }
 
         public Client UpdateClientAsync(Client client)
