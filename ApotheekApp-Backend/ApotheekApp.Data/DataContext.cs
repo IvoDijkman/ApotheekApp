@@ -38,15 +38,15 @@ namespace ApotheekApp.Data
 
             /*            modelBuilder.Entity<Medicine>()
                             .HasKey(e => e.Id);*/
-            /*
-                        modelBuilder.Entity<Allergy>()
-                            .HasKey(e => e.Id);*/
 
-            /*            modelBuilder.Entity<Client>() //TODO Check if this is the correct way of doing it.
-                            .HasMany(x => x.Allergies)
-                            .WithOne()
-                            .HasForeignKey(x => x.ClientId);
-                        *//*                .HasPrincipalKey(x => x.Id);*/
+            modelBuilder.Entity<Allergy>()
+                .HasKey(e => e.Id);
+
+            modelBuilder.Entity<Client>() //TODO Check if this is the correct way of doing it.
+                .HasMany(x => x.Allergies)
+                .WithOne()
+                .HasForeignKey(x => x.ClientId);
+            /*                .HasPrincipalKey(x => x.Id);*/
 
             /*            modelBuilder.Entity<Client>() //TODO Check if this is the correct way of doing it.
                             .HasMany(x => x.Medicines)
@@ -59,7 +59,7 @@ namespace ApotheekApp.Data
             AddClients(modelBuilder);
             AddEmployee(modelBuilder);
             /*            AddMedicine(modelBuilder);*/
-            /*            AddAllergy(modelBuilder);*/
+            AddAllergy(modelBuilder);
 
             base.OnModelCreating(modelBuilder);
         }
@@ -137,23 +137,23 @@ namespace ApotheekApp.Data
                     });
                 }*/
 
-        /*        private static void AddAllergy(ModelBuilder modelBuilder)
+        private static void AddAllergy(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Allergy>(c =>
+            {
+                c.HasData(new Allergy
                 {
-                    modelBuilder.Entity<Allergy>(c =>
-                    {
-                        c.HasData(new Allergy
-                        {
-                            Id = 1,
-                            ClientId = "1",
-                            Description = "Description",
-                        });
-                        c.HasData(new Allergy
-                        {
-                            Id = 2,
-                            ClientId = "2",
-                            Description = "Description",
-                        });
-                    });
-                }*/
+                    Id = 1,
+                    ClientId = "1",
+                    Description = "Description",
+                });
+                c.HasData(new Allergy
+                {
+                    Id = 2,
+                    ClientId = "2",
+                    Description = "Description",
+                });
+            });
+        }
     }
 }
