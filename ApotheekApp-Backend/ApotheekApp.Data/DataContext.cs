@@ -10,6 +10,7 @@ namespace ApotheekApp.Data
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Medicine> Medicines { get; set; }
         public DbSet<Allergy> Allergy { get; set; }
+        public DbSet<ClientMedicine> ClientMedicines { get; set; }
 
         public DataContext() : base()
         {
@@ -31,10 +32,8 @@ namespace ApotheekApp.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Client>();
-            /*                .HasKey(x => x.Id);*/
 
             modelBuilder.Entity<Employee>();
-            /*                .HasKey(e => e.Id);*/
 
             modelBuilder.Entity<Medicine>()
                 .HasKey(e => e.Id);
@@ -42,17 +41,16 @@ namespace ApotheekApp.Data
             modelBuilder.Entity<Allergy>()
                 .HasKey(e => e.Id);
 
+            modelBuilder.Entity<ClientMedicine>()
+                .HasKey(x => new { x.MedicineId, x.ClientId });
+
+            modelBuilder.Entity<ClientMedicine>().HasOne(x => x.Client).WithMany(x => x.ClientMeds).HasForeignKey(x => x.ClientId);
+            modelBuilder.Entity<ClientMedicine>().HasOne(x => x.Medicine).WithMany(x => x.MedClients).HasForeignKey(x => x.MedicineId);
+
             modelBuilder.Entity<Client>() //TODO Check if this is the correct way of doing it.
                 .HasMany(x => x.Allergies)
                 .WithOne()
                 .HasForeignKey(x => x.ClientId);
-            /*                .HasPrincipalKey(x => x.Id);*/
-
-            modelBuilder.Entity<Client>() //TODO Check if this is the correct way of doing it.
-                .HasMany(x => x.Medicines)
-                .WithOne()
-                .HasForeignKey(x => x.ClientId);
-            /*                .HasPrincipalKey(x => x.Id);*/
 
             modelBuilder.Entity<Client>().Navigation(x => x.Allergies).AutoInclude();
 
@@ -115,23 +113,19 @@ namespace ApotheekApp.Data
                 c.HasData(new Medicine
                 {
                     Id = 1,
-                    ClientId = "1",
                     Name = "Name",
                     Description = "Description",
                     Manual = "Manual",
                     Type = "Type",
-                    //Warnings = { "Warning" },
                     Stock = 5,
                 });
                 c.HasData(new Medicine
                 {
                     Id = 2,
-                    ClientId = "2",
                     Name = "Name",
                     Description = "Description",
                     Manual = "Manual",
                     Type = "Type",
-                    //Warnings = { "Warning" },
                     Stock = 12,
                 });
             });
