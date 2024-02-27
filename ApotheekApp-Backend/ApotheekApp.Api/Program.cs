@@ -1,4 +1,5 @@
 using ApotheekApp.Business.Services;
+using ApotheekApp.Data.Repositories;
 using ApotheekApp.Domain.Interfaces;
 
 namespace ApotheekApp.Api
@@ -16,6 +17,7 @@ namespace ApotheekApp.Api
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
             builder.Services.AddScoped<IMedicineService, MedicineService>();
+            builder.Services.AddScoped<ClientRepository>();
             builder.Services.AddScoped<IClientService, ClientService>();
 
             var app = builder.Build();
