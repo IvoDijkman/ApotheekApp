@@ -31,4 +31,8 @@
     <ProjectReference Include="..\Domain\ApotheekApp.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
 </Project>
