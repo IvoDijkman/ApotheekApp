@@ -1,4 +1,5 @@
-﻿using ApotheekApp.Domain.Models;
+﻿using ApotheekApp.Business.Extensions;
+using ApotheekApp.Domain.Models;
 using ApotheekApp.Domain.Models.Authentication;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -16,11 +17,96 @@ namespace ApotheekApp.Api.Controllers
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly IConfiguration _configuration;
-        public AuthController(UserManager<AppUser> userManager, IConfiguration configuration)
+        private readonly RoleManager<IdentityRole> _roleManager;
+        public AuthController(UserManager<AppUser> userManager, IConfiguration configuration, RoleManager<IdentityRole> roleManager)
         {
             _userManager = userManager;
             _configuration = configuration;
+            _roleManager = roleManager;
+        }
 
+        [HttpPost]
+        [Route("register")]
+        public async Task<IActionResult> Register(RegisterModel model)
+        {
+            if (model == null)
+                return BadRequest();
+
+            AppUser? existingUser = await _userManager.FindByEmailAsync(model.Email!);
+            if (existingUser != null)
+                return Conflict("User already exists");
+            if (model.Email.IsValidEmail() &&
+                model.Username.IsValidUsername() &&
+                model.PhoneNumber.IsValidNlPhoneNumber())
+            {
+                var user = new AppUser
+                {
+                    Email = model.Email,
+                    SecurityStamp = Guid.NewGuid().ToString(),
+                    UserName = model.Username,
+                    PhoneNumber = model.PhoneNumber,
+
+                };
+                if (model.Password.IsValidPassword())
+                {
+                    IdentityResult? createUser = await _userManager.CreateAsync(user, model.Password!);
+                    if (!createUser.Succeeded)
+                    {
+                        return StatusCode(StatusCodes.Status500InternalServerError, string.Join(';', createUser.Errors.Select(error => error.Description)));
+                    }
+
+                    return Ok(createUser);
+                };
+
+            }
+            return BadRequest(model); //TODO: check if there is a cleaner way
+        }
+
+        [HttpPost]
+        [Route("register-admin")]
+        public async Task<IActionResult> RegisterAdmin(RegisterModel model)
+        {
+            if (model == null)
+                return BadRequest();
+
+            var existingUser = await _userManager.FindByEmailAsync(model.Username!);
+            if (existingUser != null)
+                return Conflict("User already exists");
+
+            if (model.Email.IsValidEmail() &&
+                model.Username.IsValidUsername() &&
+                model.PhoneNumber.IsValidNlPhoneNumber())
+            {
+                var user = new AppUser()
+                {
+                    Email = model.Email,
+                    SecurityStamp = Guid.NewGuid().ToString(),
+                    UserName = model.Username,
+                    PhoneNumber = model.PhoneNumber
+
+                };
+                if (model.Password.IsValidPassword())
+                {
+                    var createUser = await _userManager.CreateAsync(user, model.Password!);
+                    if (!createUser.Succeeded)
+                    {
+                        return StatusCode(StatusCodes.Status500InternalServerError, string.Join(';', createUser.Errors.Select(error => error.Description)));
+                    }
+
+                    if (!await _roleManager.RoleExistsAsync(UserRoles.Admin))
+                        await _roleManager.CreateAsync(new IdentityRole(UserRoles.Admin));
+                    if (!await _roleManager.RoleExistsAsync(UserRoles.Employee))
+                        await _roleManager.CreateAsync(new IdentityRole(UserRoles.Employee));
+
+                    if (await _roleManager.RoleExistsAsync(UserRoles.Admin))
+                    {
+                        await _userManager.AddToRoleAsync(user, UserRoles.Admin);
+                    }
+
+                    return Ok(createUser);
+                }
+            }
+            return BadRequest(model);//TODO: check if there's a cleaner way
         }
 
         [HttpPost]

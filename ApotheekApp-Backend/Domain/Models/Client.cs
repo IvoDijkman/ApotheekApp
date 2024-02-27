@@ -1,6 +1,8 @@
-﻿namespace ApotheekApp.Domain.Models
+﻿using Microsoft.AspNetCore.Identity;
+
+namespace ApotheekApp.Domain.Models
 {
-    public class Client : AppUser
+    public class Client : IdentityUser
     {
         public virtual string FirstName { get; set; }
         public virtual string LastName { get; set; }

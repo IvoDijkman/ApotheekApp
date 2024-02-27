@@ -5,28 +5,31 @@ namespace ApotheekApp.Business.Services
 {
     public class MedicineService : IMedicineService
     {
-        public IEnumerable<Medicine> GetAllAsync()
+        private IMedicineRepository _medicineRepository;
+        public MedicineService(IMedicineRepository medicineRepository)
         {
-            // Return all medicine
-            throw new NotImplementedException();
+            _medicineRepository = medicineRepository;
+        }
+        public async Task<IEnumerable<Medicine>?> GetAllAsync()
+        {
+            IEnumerable<Medicine>? medicines = await _medicineRepository.GetAllAsync();
+            return medicines;
+        }
+        public async Task<IEnumerable<Medicine>?> GetAllByClientAsync(Client client)
+        {
+            IEnumerable<Medicine>? medicines = await _medicineRepository.GetAllByClientAsync(client);
+            return medicines;
         }
 
-        public IEnumerable<Medicine> GetAllByUserAsync() // Appuser user (pass as parameter)
+        public async Task<Medicine> GetByIdAsync(int id)
         {
-            // Return all medicine of a specific user based on id
-            throw new NotImplementedException();
+            Medicine? medicine = await _medicineRepository.GetByIdAsync(id);
+            return medicine;
         }
 
-        public Medicine GetByIdAsync(int id)
+        public async Task Delete(int id)
         {
-            // Return medicine by id
-            throw new NotImplementedException();
-        }
-
-        public Task Delete(int id) // Appuser user (pass as parameter)
-        {
-            // Delete medicine of a specific user based on id
-            throw new NotImplementedException();
+            await _medicineRepository.Delete(id);
         }
     }
 }
