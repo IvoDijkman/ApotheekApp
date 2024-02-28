@@ -1,15 +1,17 @@
-﻿using Microsoft.AspNetCore.Identity;
-
-namespace ApotheekApp.Domain.Models
+﻿namespace ApotheekApp.Domain.Models
 {
-    public class Client : IdentityUser
+    public class Client : AppUser
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string LastName { get; set; }
+        public virtual ICollection<ClientMedicine> ClientMeds { get; set; }
+        public virtual string FirstName { get; set; }
+        public virtual string LastName { get; set; }
+
+        //public virtual string Address { get; set; }
+        //public virtual string PostalCode { get; set; }
+        //public virtual string City { get; set; }
         public DateTime DateOfBirth { get; set; }
 
-        public virtual List<Allergy> Allergies { get; set; }
-        public virtual List<Medicine> Medicines { get; set; }
+        public virtual List<Allergy>? Allergies { get; set; }
+        public virtual List<Medicine>? Medicines { get; set; }
     }
 }

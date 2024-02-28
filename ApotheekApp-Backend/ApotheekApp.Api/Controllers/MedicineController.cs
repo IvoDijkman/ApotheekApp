@@ -13,6 +13,7 @@ namespace ApotheekApp.Api.Controllers
     {
         private readonly IMedicineService _medicineService;
         private readonly UserManager<Client> _userManager;
+
         public MedicineController(MedicineService medicineService, UserManager<Client> userManager)
         {
             _medicineService = medicineService;
@@ -35,7 +36,6 @@ namespace ApotheekApp.Api.Controllers
             Client? client = await _userManager.GetUserAsync(User);
             if (client == null) return NotFound("Client not found!");
 
-
             // Pass user as parameter
             IEnumerable<Medicine>? medicines = await _medicineService.GetAllByClientAsync(client);
 
@@ -44,14 +44,14 @@ namespace ApotheekApp.Api.Controllers
             return Ok(medicines);
         }
 
-        [HttpGet("GetWarnings/{id}"), Authorize]
-        public async Task<IActionResult> GetWarnings(int id)
-        {
-            Medicine? medicine = await _medicineService.GetByIdAsync(id);
-            if (medicine == null) return BadRequest("No medicine found");
+        /*        [HttpGet("GetWarnings/{id}"), Authorize]
+                public async Task<IActionResult> GetWarnings(int id)
+                {
+                    Medicine? medicine = await _medicineService.GetByIdAsync(id);
+                    if (medicine == null) return BadRequest("No medicine found");
 
-            return Ok(medicine.Warnings);
-        }
+                    return Ok(medicine.Warnings);
+                }*/
 
         [HttpDelete("Delete/{id}"), Authorize]
         public async Task<IActionResult> Delete(int id)
