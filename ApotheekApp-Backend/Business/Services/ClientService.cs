@@ -16,7 +16,7 @@ namespace ApotheekApp.Business.Services
             return client;
         }
 
-        public async Task DeleteClientAsync(int id)
+        public async Task DeleteClientAsync(string id)
         {
             _clientRepository.DeleteClientAsync(id);
             await _clientRepository.SaveChanges();
@@ -24,7 +24,7 @@ namespace ApotheekApp.Business.Services
 
         public IEnumerable<Client> GetAllClients() => _clientRepository.GetAllClients();
 
-        public Client GetClientByIdAsync(int id) => _clientRepository.GetClientByIdAsync(id);
+        public Client GetClientByIdAsync(string id) => _clientRepository.GetClientByIdAsync(id);
 
         public Client GetClientByNameAsync(string lastname, DateTime dob, string? firstname) =>
             _clientRepository.GetClientByNameAsync(lastname, dob, firstname);
