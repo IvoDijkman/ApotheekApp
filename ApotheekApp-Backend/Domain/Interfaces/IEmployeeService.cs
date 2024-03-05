@@ -9,14 +9,14 @@ namespace ApotheekApp.Domain.Interfaces
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public Employee GetEmployeeByIdAsync(int id);
+        public Employee GetEmployeeByIdAsync(string id);
 
         /// <summary>
         /// Get Employees by first name
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
-        public Employee GetEmployeeByNameAsync(string name);
+        public Employee GetEmployeeByNameAsync(string lastname, DateTime dob, string? firstname);
 
         /// <summary>
         /// Create a new Employee
@@ -30,7 +30,7 @@ namespace ApotheekApp.Domain.Interfaces
         /// </summary>
         /// <param name="employee"></param>
         /// <returns></returns>
-        public Task<Employee> UpdateEmployeeAsync(Employee employee);
+        public Employee UpdateEmployeeAsync(Employee employee);
 
         /// <summary>
         /// Get list of all Employees
@@ -43,6 +43,6 @@ namespace ApotheekApp.Domain.Interfaces
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public Task DeleteEmployeeAsync(int id);
+        public void DeleteEmployeeAsync(string id);
     }
 }

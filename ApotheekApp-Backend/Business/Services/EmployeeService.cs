@@ -11,32 +11,33 @@ namespace ApotheekApp.Business.Services
         public async Task<Employee> CreateEmployeeAsync(Employee employee)
         {
             ArgumentNullException.ThrowIfNull(employee);
+            await employeeRepository.CreateEmployeeAsync(employee);
             return employee;
         }
 
-        public Task DeleteEmployeeAsync(int id)
+        public void DeleteEmployeeAsync(string id)
         {
-            throw new NotImplementedException();
+            employeeRepository.DeleteEmployeeAsync(id);
         }
 
         public IEnumerable<Employee> GetAllEmployees()
         {
-            throw new NotImplementedException();
+            return employeeRepository.GetAllEmployees();
         }
 
-        public Employee GetEmployeeByIdAsync(int id)
+        public Employee GetEmployeeByIdAsync(string id)
         {
-            throw new NotImplementedException();
+            return employeeRepository.GetEmployeeByIdAsync(id);
         }
 
-        public Employee GetEmployeeByNameAsync(string name)
+        public Employee GetEmployeeByNameAsync(string lastname, DateTime dob, string? firstname)
         {
-            throw new NotImplementedException();
+            return employeeRepository.GetEmployeeByNameAsync(lastname, dob, firstname);
         }
 
-        public Task<Employee> UpdateEmployeeAsync(Employee employee)
+        public Employee UpdateEmployeeAsync(Employee employee)
         {
-            throw new NotImplementedException();
+            return employeeRepository.UpdateEmployeeAsync(employee);
         }
     }
 }
