@@ -33,13 +33,6 @@ namespace ApotheekApp.Domain.Interfaces
         public Task<Employee> UpdateEmployeeAsync(Employee employee);
 
         /// <summary>
-        /// Search Employee
-        /// </summary>
-        /// <param name="query"></param>
-        /// <returns></returns>
-        public IEnumerable<Employee> SearchEmployees(string query);
-
-        /// <summary>
         /// Get list of all Employees
         /// </summary>
         /// <returns></returns>
