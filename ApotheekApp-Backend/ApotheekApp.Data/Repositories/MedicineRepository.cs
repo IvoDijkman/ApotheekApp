@@ -4,32 +4,32 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ApotheekApp.Data.Repositories
 {
-    public class MedicineRepository(DataContext context) : IMedicineRepository
+    public class MedicineRepository(DataContext context) : IMedicineRepository  //check if this works with medicine instead of the medicines list
     {
         public async Task Delete(int id)
         {
-            Medicine? medicine = await context.Medicines.FirstOrDefaultAsync(m => m.Id == id);
+            Medicine? medicine = await context.Medicine.FirstOrDefaultAsync(m => m.MedicineId == id);
 
             if (medicine != null)
             {
-                context.Medicines.Remove(medicine);
+                context.Medicine.Remove(medicine);
                 await context.SaveChangesAsync();
             }
         }
 
         public async Task<IEnumerable<Medicine>?> GetAllAsync()
         {
-            return await context.Medicines.ToListAsync();
+            return await context.Medicine.ToListAsync();
         }
 
         public async Task<IEnumerable<Medicine>?> GetAllByClientAsync(Client client)
         {
-            return client.Medicines;
+            return (IEnumerable<Medicine>?)client.Medicine;
         }
 
         public async Task<Medicine?> GetByIdAsync(int id)
         {
-            return await context.Medicines.FirstOrDefaultAsync(m => m.Id == id);
+            return await context.Medicine.FirstOrDefaultAsync(m => m.MedicineId == id);
         }
     }
 }

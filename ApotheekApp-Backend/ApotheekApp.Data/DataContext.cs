@@ -8,7 +8,7 @@ namespace ApotheekApp.Data
     {
         public DbSet<Client> Clients { get; set; }
         public DbSet<Employee> Employees { get; set; }
-        public DbSet<Medicine> Medicines { get; set; }
+        public DbSet<Medicine> Medicine { get; set; }
         public DbSet<Allergy> Allergy { get; set; }
         public DbSet<ClientMedicine> ClientMedicines { get; set; }
 
@@ -36,7 +36,7 @@ namespace ApotheekApp.Data
             modelBuilder.Entity<Employee>();
 
             modelBuilder.Entity<Medicine>()
-                .HasKey(e => e.Id);
+                .HasKey(e => e.MedicineId);
 
             modelBuilder.Entity<Allergy>()
                 .HasKey(e => e.Id);
@@ -44,8 +44,8 @@ namespace ApotheekApp.Data
             modelBuilder.Entity<ClientMedicine>()
                 .HasKey(x => new { x.MedicineId, x.ClientId });
 
-            modelBuilder.Entity<ClientMedicine>().HasOne(x => x.Client).WithMany(x => x.ClientMeds).HasForeignKey(x => x.ClientId);
-            modelBuilder.Entity<ClientMedicine>().HasOne(x => x.Medicine).WithMany(x => x.MedClients).HasForeignKey(x => x.MedicineId);
+            modelBuilder.Entity<ClientMedicine>().HasOne(x => x.Client).WithMany(x => x.MedicineLink).HasForeignKey(x => x.ClientId);
+            modelBuilder.Entity<ClientMedicine>().HasOne(x => x.Medicine).WithMany(x => x.ClientLink).HasForeignKey(x => x.MedicineId);
 
             modelBuilder.Entity<Client>() //TODO Check if this is the correct way of doing it.
                 .HasMany(x => x.Allergies)
@@ -54,56 +54,12 @@ namespace ApotheekApp.Data
 
             modelBuilder.Entity<Client>().Navigation(x => x.Allergies).AutoInclude();
 
-            AddClients(modelBuilder);
-            AddEmployee(modelBuilder);
             AddMedicine(modelBuilder);
             AddAllergy(modelBuilder);
+            AddClients(modelBuilder);
+            AddEmployee(modelBuilder);
 
             base.OnModelCreating(modelBuilder);
-        }
-
-        private static void AddClients(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<Client>(c =>
-            {
-                c.HasData(new Client
-                {
-                    Id = "1",
-                    FirstName = "Name",
-                    LastName = "Lastname",
-                    DateOfBirth = new DateTime(),
-                    Allergies = { },
-                    Medicines = { },
-                });
-                c.HasData(new Client
-                {
-                    Id = "2",
-                    FirstName = "Name",
-                    LastName = "Lastname",
-                    DateOfBirth = new DateTime(),
-                    Allergies = { },
-                    Medicines = { },
-                });
-            });
-        }
-
-        private static void AddEmployee(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<Employee>(c =>
-            {
-                c.HasData(new Employee
-                {
-                    Id = "3",
-                    FirstName = "Name",
-                    LastName = "Lastname",
-                });
-                c.HasData(new Employee
-                {
-                    Id = "4",
-                    FirstName = "Name",
-                    LastName = "Lastname",
-                });
-            });
         }
 
         private static void AddMedicine(ModelBuilder modelBuilder) //TODO fix medicine list not wanting to migrate in.
@@ -112,7 +68,7 @@ namespace ApotheekApp.Data
             {
                 c.HasData(new Medicine
                 {
-                    Id = 1,
+                    MedicineId = 1,
                     Name = "Name",
                     Description = "Description",
                     Manual = "Manual",
@@ -121,7 +77,7 @@ namespace ApotheekApp.Data
                 });
                 c.HasData(new Medicine
                 {
-                    Id = 2,
+                    MedicineId = 2,
                     Name = "Name",
                     Description = "Description",
                     Manual = "Manual",
@@ -146,6 +102,48 @@ namespace ApotheekApp.Data
                     Id = 2,
                     ClientId = "2",
                     Description = "Description",
+                });
+            });
+        }
+
+        private static void AddClients(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Client>(c =>
+            {
+                c.HasData(new Client
+                {
+                    Id = "1",
+                    FirstName = "Name",
+                    LastName = "Lastname",
+                    DateOfBirth = new DateTime(),
+                    Allergies = { },
+                });
+                c.HasData(new Client
+                {
+                    Id = "2",
+                    FirstName = "Name",
+                    LastName = "Lastname",
+                    DateOfBirth = new DateTime(),
+                    Allergies = { },
+                });
+            });
+        }
+
+        private static void AddEmployee(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Employee>(c =>
+            {
+                c.HasData(new Employee
+                {
+                    Id = "3",
+                    FirstName = "Name",
+                    LastName = "Lastname",
+                });
+                c.HasData(new Employee
+                {
+                    Id = "4",
+                    FirstName = "Name",
+                    LastName = "Lastname",
                 });
             });
         }

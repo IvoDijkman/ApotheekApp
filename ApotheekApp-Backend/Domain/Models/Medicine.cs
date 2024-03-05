@@ -2,8 +2,10 @@
 {
     public class Medicine
     {
-        public virtual ICollection<ClientMedicine> MedClients { get; set; }
-        public int Id { get; set; }
+        public virtual ICollection<ClientMedicine> Clients { get; set; }
+        public IEnumerable<ClientMedicine> ClientLink { get; set; }
+        public int MedicineId { get; set; }
+
         public string Name { get; set; }
         public string Description { get; set; }
         public string Manual { get; set; }

@@ -2,8 +2,12 @@
 {
     public class Client : AppUser
     {
-        public virtual ICollection<ClientMedicine> ClientMeds { get; set; }
+        public virtual ICollection<ClientMedicine> Medicine { get; set; }
+
+        public IEnumerable<ClientMedicine> MedicineLink { get; set; }
+
         public virtual string FirstName { get; set; }
+
         public virtual string LastName { get; set; }
 
         //public virtual string Address { get; set; }
@@ -12,6 +16,6 @@
         public DateTime DateOfBirth { get; set; }
 
         public virtual List<Allergy>? Allergies { get; set; }
-        public virtual List<Medicine>? Medicines { get; set; }
+        //public virtual List<Medicine>? Medicines { get; set; }
     }
 }
