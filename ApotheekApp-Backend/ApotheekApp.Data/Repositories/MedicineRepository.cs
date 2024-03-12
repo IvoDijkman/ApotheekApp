@@ -22,10 +22,10 @@ namespace ApotheekApp.Data.Repositories
             return await context.Medicine.ToListAsync();
         }
 
-        public async Task<IEnumerable<Medicine>?> GetAllByClientAsync(Client client)
-        {
-            return (IEnumerable<Medicine>?)client.Medicine;
-        }
+        /* public async Task<IEnumerable<Medicine>?> GetAllByClientAsync(Client client)
+         {
+             return (IEnumerable<Medicine>?)client.Medicine;
+         }*/
 
         public async Task<Medicine?> GetByIdAsync(int id)
         {

@@ -14,7 +14,7 @@ namespace ApotheekApp.Api.Controllers
         private readonly IMedicineService _medicineService;
         private readonly UserManager<Client> _userManager;
 
-        public MedicineController(MedicineService medicineService, UserManager<Client> userManager)
+        public MedicineController(IMedicineService medicineService, UserManager<Client> userManager)
         {
             _medicineService = medicineService;
             _userManager = userManager;
