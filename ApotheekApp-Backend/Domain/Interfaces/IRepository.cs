@@ -1,6 +1,6 @@
 ﻿namespace ApotheekApp.Domain.Interfaces
 {
-    public interface IEFRepository<T> where T : class
+    public interface IRepository<T> where T : class, IEntity
     {
         Task<T> CreateAsync(T entity);
 

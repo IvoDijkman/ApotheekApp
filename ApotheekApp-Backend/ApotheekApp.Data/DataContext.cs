@@ -1,13 +1,13 @@
 ﻿using ApotheekApp.Domain.Models;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace ApotheekApp.Data
 {
-    public class DataContext : IdentityDbContext<AppUser>
+    public class DataContext : DbContext
     {
         public DbSet<AppUser> AppUser { get; set; }
         public DbSet<Client> Client { get; set; }
+
         public DbSet<Employee> Employee { get; set; }
         public DbSet<Medicine> Medicine { get; set; }
         public DbSet<Allergy> Allergy { get; set; }
@@ -39,8 +39,6 @@ namespace ApotheekApp.Data
 
             builder.Entity<Prescription>().HasMany(p => p.Medicines).WithMany().UsingEntity(e => e.ToTable("PrescriptionMedicine"));
             builder.Entity<Prescription>().Navigation(p => p.Medicines).AutoInclude();
-
-            //base.OnModelCreating(modelBuilder);
         }
     }
 }

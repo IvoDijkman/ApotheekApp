@@ -6,9 +6,9 @@ namespace ApotheekApp.Business.Services
 {
     public class ClientService : IClientService
     {
-        private readonly IEFRepository<Client> _clientRepository;
+        private readonly IRepository<Client> _clientRepository;
 
-        public ClientService(IEFRepository<Client> clientRepository)
+        public ClientService(IRepository<Client> clientRepository)
         {
             _clientRepository = clientRepository;
         }
@@ -17,7 +17,7 @@ namespace ApotheekApp.Business.Services
         {
             ArgumentNullException.ThrowIfNull(client);
             //ToDo:do we search for NormalizedUserName?
-            if (await _clientRepository.GetAll().AnyAsync(e => e.NormalizedUserName == client.NormalizedUserName))
+            if (await _clientRepository.GetAll().AnyAsync(e => e.FirstName == client.FirstName))
             {
                 throw new ArgumentException("Client allready exists");
             }

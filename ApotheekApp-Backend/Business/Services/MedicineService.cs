@@ -3,21 +3,19 @@ using ApotheekApp.Domain.Models;
 
 namespace ApotheekApp.Business.Services
 {
-    public class MedicineService(IMedicineRepository medicineRepository) : IMedicineService
+    public class MedicineService : IMedicineService
     {
-        private readonly IMedicineRepository _medicineRepository = medicineRepository;
+        private readonly IRepository<Medicine> _medicineRepository;
+
+        public MedicineService(IRepository<Medicine> medicineRepository)
+        {
+            _medicineRepository = medicineRepository;
+        }
 
         public async Task<IEnumerable<Medicine>?> GetAllAsync()
         {
-            IEnumerable<Medicine>? medicines = await _medicineRepository.GetAllAsync();
-            return medicines;
+            return _medicineRepository.GetAll().ToList();
         }
-
-        /*        public async Task<IEnumerable<Medicine>?> GetAllByClientAsync(Client client)
-                {
-                    IEnumerable<Medicine>? medicines = await _medicineRepository.GetAllByClientAsync(client);
-                    return medicines;
-                }*/
 
         public async Task<Medicine> GetByIdAsync(int id)
         {

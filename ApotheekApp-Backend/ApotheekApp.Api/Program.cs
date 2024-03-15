@@ -13,17 +13,14 @@ namespace ApotheekApp.Api
 
             // Add services to the container.
 
-            builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
-            builder.Services.AddScoped<IClientService, ClientService>();
-            builder.Services.AddScoped<ClientRepository>();
-            builder.Services.AddScoped<IEmployeeService, EmployeeService>();
-            builder.Services.AddScoped<EmployeeRepository>();
-            builder.Services.AddScoped<IMedicineService, MedicineService>();
-            builder.Services.AddScoped<IMedicineRepository, MedicineRepository>();
-            builder.Services.AddDbContext<DataContext>();
+            builder.Services.AddSwaggerGen()
+                .AddScoped<IClientService, ClientService>()
+                .AddScoped<IMedicineService, MedicineService>()
+                .AddScoped(typeof(IRepository<>), typeof(EFRepository<>))
+                .AddDbContext<DataContext>()
+                .AddControllers();
 
             var app = builder.Build();
 

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ApotheekApp.Data.Repositories
 {
-    public class EFRepository<T> : IEFRepository<T> where T : class, IEntity
+    public class EFRepository<T> : IRepository<T> where T : class, IEntity
     {
         private readonly DataContext _dataContext;
 
