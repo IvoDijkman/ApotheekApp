@@ -11,6 +11,10 @@ namespace ApotheekApp.Domain.Models
 
         public string? AllergyId { get; set; }
 
+        public virtual required string FirstName { get; set; }
+
+        public virtual required string LastName { get; set; }
+
         //public virtual string Address { get; set; }
         //public virtual string PostalCode { get; set; }
         //public virtual string City { get; set; }
