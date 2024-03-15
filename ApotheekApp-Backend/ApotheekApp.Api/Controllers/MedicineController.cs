@@ -30,19 +30,20 @@ namespace ApotheekApp.Api.Controllers
             return Ok(medicines);
         }
 
-        [HttpGet("GetAllByClient"), Authorize]
-        public async Task<IActionResult> GetAllByClient()
-        {
-            Client? client = await _userManager.GetUserAsync(User);
-            if (client == null) return NotFound("Client not found!");
+        /*
+                [HttpGet("GetAllByClient"), Authorize]
+                public async Task<IActionResult> GetAllByClient()
+                {
+                    Client? client = await _userManager.GetUserAsync(User);
+                    if (client == null) return NotFound("Client not found!");
 
-            // Pass user as parameter
-            IEnumerable<Medicine>? medicines = await _medicineService.GetAllByClientAsync(client);
+                    // Pass user as parameter
+                    IEnumerable<Medicine>? medicines = await _medicineService.GetAllByClientAsync(client);
 
-            if (medicines == null) return BadRequest("No medicines found");
+                    if (medicines == null) return BadRequest("No medicines found");
 
-            return Ok(medicines);
-        }
+                    return Ok(medicines);
+                }*/
 
         /*        [HttpGet("GetWarnings/{id}"), Authorize]
                 public async Task<IActionResult> GetWarnings(int id)

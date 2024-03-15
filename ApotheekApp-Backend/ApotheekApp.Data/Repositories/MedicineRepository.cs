@@ -8,7 +8,7 @@ namespace ApotheekApp.Data.Repositories
     {
         public async Task Delete(int id)
         {
-            Medicine? medicine = await context.Medicine.FirstOrDefaultAsync(m => m.MedicineId == id);
+            Medicine? medicine = await context.Medicine.FirstOrDefaultAsync(m => m.Id == id);
 
             if (medicine != null)
             {
@@ -29,7 +29,7 @@ namespace ApotheekApp.Data.Repositories
 
         public async Task<Medicine?> GetByIdAsync(int id)
         {
-            return await context.Medicine.FirstOrDefaultAsync(m => m.MedicineId == id);
+            return await context.Medicine.FirstOrDefaultAsync(m => m.Id == id);
         }
     }
 }

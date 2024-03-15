@@ -13,11 +13,11 @@ namespace ApotheekApp.Business.Services
             return medicines;
         }
 
-        public async Task<IEnumerable<Medicine>?> GetAllByClientAsync(Client client)
-        {
-            IEnumerable<Medicine>? medicines = await _medicineRepository.GetAllByClientAsync(client);
-            return medicines;
-        }
+        /*        public async Task<IEnumerable<Medicine>?> GetAllByClientAsync(Client client)
+                {
+                    IEnumerable<Medicine>? medicines = await _medicineRepository.GetAllByClientAsync(client);
+                    return medicines;
+                }*/
 
         public async Task<Medicine> GetByIdAsync(int id)
         {

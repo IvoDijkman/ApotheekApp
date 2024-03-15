@@ -11,7 +11,7 @@ namespace ApotheekApp.Data
             {
                 c.HasData(new Medicine
                 {
-                    MedicineId = 1,
+                    Id = 1,
                     Name = "Name",
                     Description = "Description",
                     Manual = "Manual",
@@ -20,7 +20,7 @@ namespace ApotheekApp.Data
                 });
                 c.HasData(new Medicine
                 {
-                    MedicineId = 2,
+                    Id = 2,
                     Name = "Name",
                     Description = "Description",
                     Manual = "Manual",
