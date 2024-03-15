@@ -1,7 +1,6 @@
 ﻿using ApotheekApp.Business.Extensions;
 using ApotheekApp.Domain.Models;
 using ApotheekApp.Domain.Models.Authentication;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -46,6 +45,8 @@ namespace ApotheekApp.Api.Controllers
                     SecurityStamp = Guid.NewGuid().ToString(),
                     UserName = model.Username,
                     PhoneNumber = model.PhoneNumber,
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
                 };
                 if (model.Password.IsValidPassword())
                 {
@@ -56,7 +57,7 @@ namespace ApotheekApp.Api.Controllers
                     }
 
                     return Ok(createUser);
-                };
+                }
             }
             return BadRequest(model); //TODO: check if there is a cleaner way
         }
@@ -81,7 +82,9 @@ namespace ApotheekApp.Api.Controllers
                     Email = model.Email,
                     SecurityStamp = Guid.NewGuid().ToString(),
                     UserName = model.Username,
-                    PhoneNumber = model.PhoneNumber
+                    PhoneNumber = model.PhoneNumber,
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
                 };
                 if (model.Password.IsValidPassword())
                 {

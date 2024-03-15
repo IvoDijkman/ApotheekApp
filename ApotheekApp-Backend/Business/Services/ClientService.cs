@@ -1,39 +1,52 @@
-﻿using ApotheekApp.Data.Repositories;
-using ApotheekApp.Domain.Interfaces;
+﻿using ApotheekApp.Domain.Interfaces;
 using ApotheekApp.Domain.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace ApotheekApp.Business.Services
 {
-    public class ClientService(ClientRepository clientRepository) : IClientService
+    public class ClientService : IClientService
     {
-        private readonly ClientRepository _clientRepository = clientRepository;
+        private readonly IEFRepository<Client> _clientRepository;
+
+        public ClientService(IEFRepository<Client> clientRepository)
+        {
+            _clientRepository = clientRepository;
+        }
 
         public async Task<Client> CreateClientAsync(Client client)
         {
             ArgumentNullException.ThrowIfNull(client);
-            await _clientRepository.CreateClientAsync(client);
-            await _clientRepository.SaveChanges();
+            //ToDo:do we search for NormalizedUserName?
+            if (await _clientRepository.GetAll().AnyAsync(e => e.NormalizedUserName == client.NormalizedUserName))
+            {
+                throw new ArgumentException("Client allready exists");
+            }
+            await _clientRepository.CreateAsync(client);
+            await _clientRepository.SaveChangesAsync();
             return client;
         }
 
-        public async Task DeleteClientAsync(string id)
+        public async Task DeleteClientAsync(int id)
         {
-            _clientRepository.DeleteClientAsync(id);
-            await _clientRepository.SaveChanges();
+            await _clientRepository.Delete(id);
+            //await _clientRepository.SaveChangesAsync(); Todo: delete?
         }
 
-        public IEnumerable<Client> GetAllClients() => _clientRepository.GetAllClients();
+        public async Task<IEnumerable<Client>> GetAllClients()
+        {
+            return await _clientRepository.GetAll().ToListAsync();
+        }
 
-        public Client GetClientByIdAsync(string id) => _clientRepository.GetClientByIdAsync(id);
-
-        public Client GetClientByNameAsync(string lastname, DateTime dob, string? firstname) =>
-            _clientRepository.GetClientByNameAsync(lastname, dob, firstname);
+        public async Task<Client> GetClientByIdAsync(int id)
+        {
+            return await _clientRepository.GetByIdAsync(id);
+        }
 
         public async Task<Client> UpdateClientAsync(Client client)
         {
             ArgumentNullException.ThrowIfNull(client);
-            _clientRepository.UpdateClientAsync(client);
-            await _clientRepository.SaveChanges();
+            await _clientRepository.UpdateAsync(client);
+            //await _clientRepository.SaveChangesAsync();Todo: delete?
             return client;
         }
     }

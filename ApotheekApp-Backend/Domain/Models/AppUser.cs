@@ -7,5 +7,8 @@ namespace ApotheekApp.Domain.Models
     {
         [Key]
         public override string Id { get => base.Id; set => base.Id = value; }
+
+        public required virtual string FirstName { get; set; }
+        public required virtual string LastName { get; set; }
     }
 }

@@ -9,16 +9,7 @@ namespace ApotheekApp.Domain.Interfaces
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public Client GetClientByIdAsync(string id);
-
-        /// <summary>
-        /// Search Clients by lastname, dob and ?firstname.
-        /// </summary>
-        /// <param name="lastname"></param>
-        /// <param name="dob"></param>
-        /// <param name="firstname"></param>
-        /// <returns></returns>
-        public Client GetClientByNameAsync(string lastname, DateTime dob, string? firstname);
+        public Task<Client> GetClientByIdAsync(int id);
 
         /// <summary>
         /// Create a new Client.
@@ -38,13 +29,13 @@ namespace ApotheekApp.Domain.Interfaces
         /// Get list of all Clients.
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<Client> GetAllClients();
+        public Task<IEnumerable<Client>> GetAllClients();
 
         /// <summary>
         /// Delete Client by Id.
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public Task DeleteClientAsync(string id);
+        public Task DeleteClientAsync(int id);
     }
 }

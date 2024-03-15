@@ -21,8 +21,7 @@ namespace ApotheekApp.Business.Services
 
         public async Task<Medicine> GetByIdAsync(int id)
         {
-            Medicine? medicine = await _medicineRepository.GetByIdAsync(id);
-            return medicine;
+            return await _medicineRepository.GetByIdAsync(id) ?? throw new ArgumentException("Medicine Id not found");
         }
 
         public async Task Delete(int id)

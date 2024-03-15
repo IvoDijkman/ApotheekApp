@@ -1,5 +1,4 @@
-﻿using ApotheekApp.Business.Services;
-using ApotheekApp.Domain.Interfaces;
+﻿using ApotheekApp.Domain.Interfaces;
 using ApotheekApp.Domain.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -20,7 +19,7 @@ namespace ApotheekApp.Api.Controllers
             _userManager = userManager;
         }
 
-        [HttpGet("GetAll"), Authorize]
+        [HttpGet("GetAll")]
         public async Task<IActionResult> GetAll()
         {
             IEnumerable<Medicine>? medicines = await _medicineService.GetAllAsync();
