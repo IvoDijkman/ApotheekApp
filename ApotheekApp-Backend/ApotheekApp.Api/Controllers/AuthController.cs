@@ -18,6 +18,7 @@ namespace ApotheekApp.Api.Controllers
         private readonly UserManager<AppUser> _userManager;
         private readonly IConfiguration _configuration;
         private readonly RoleManager<IdentityRole> _roleManager;
+
         public AuthController(UserManager<AppUser> userManager, IConfiguration configuration, RoleManager<IdentityRole> roleManager)
         {
             _userManager = userManager;
@@ -45,7 +46,6 @@ namespace ApotheekApp.Api.Controllers
                     SecurityStamp = Guid.NewGuid().ToString(),
                     UserName = model.Username,
                     PhoneNumber = model.PhoneNumber,
-
                 };
                 if (model.Password.IsValidPassword())
                 {
@@ -57,7 +57,6 @@ namespace ApotheekApp.Api.Controllers
 
                     return Ok(createUser);
                 };
-
             }
             return BadRequest(model); //TODO: check if there is a cleaner way
         }
@@ -83,7 +82,6 @@ namespace ApotheekApp.Api.Controllers
                     SecurityStamp = Guid.NewGuid().ToString(),
                     UserName = model.Username,
                     PhoneNumber = model.PhoneNumber
-
                 };
                 if (model.Password.IsValidPassword())
                 {
