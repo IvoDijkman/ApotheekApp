@@ -5,13 +5,25 @@ namespace ApotheekApp.Data
 {
     public class DataContext : DbContext
     {
+        //Link voor meer info over inheritence en EFcore:
+        //https://www.learnentityframeworkcore.com/inheritance/table-per-hierarchy
+
+        //Parent:
         public DbSet<AppUser> AppUser { get; set; }
+
+        //Children:
+        public DbSet<Employee> Employee { get; set; }
+
         public DbSet<Client> Client { get; set; }
 
-        public DbSet<Employee> Employee { get; set; }
-        public DbSet<Medicine> Medicine { get; set; }
+        //Relationship with Client: Many-to-many
         public DbSet<Allergy> Allergy { get; set; }
+
+        //Relationship with Client: Many-to-one
         public DbSet<Prescription> Prescription { get; set; }
+
+        //Relationship with Prescription: Many-to-many
+        public DbSet<Medicine> Medicine { get; set; }
 
         public DataContext() : base()
         {

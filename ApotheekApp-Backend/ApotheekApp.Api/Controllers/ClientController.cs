@@ -16,6 +16,18 @@ namespace ApotheekApp.Api.Controllers
         }
 
         [HttpPost]
+        [Route("CreateClientByName")]
+        public async Task<IActionResult> CreateClient(string firstName, string lastName)
+        {
+            try
+            {
+                Client client = new Client() { FirstName = firstName, LastName = lastName };
+                return Ok(await _clientService.CreateClientAsync(client));
+            }
+            catch (Exception ex) { return BadRequest(ex.Message); }
+        }
+
+        [HttpPost]
         [Route("CreateClient")]
         public async Task<IActionResult> CreateClient(Client client)
         {
