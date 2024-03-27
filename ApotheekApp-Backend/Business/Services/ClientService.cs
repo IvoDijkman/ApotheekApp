@@ -4,9 +4,14 @@ using ApotheekApp.Domain.Models;
 
 namespace ApotheekApp.Business.Services
 {
-    public class ClientService(ClientRepository clientRepository) : IClientService
+    public class ClientService : IClientService
     {
-        private readonly ClientRepository _clientRepository = clientRepository;
+        private readonly IClientRepository _clientRepository;
+
+        public ClientService(IClientRepository clientRepository)
+        {
+            _clientRepository = clientRepository;
+        }
 
         public async Task<Client> CreateClientAsync(Client client)
         {
