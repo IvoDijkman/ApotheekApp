@@ -3,9 +3,14 @@ using ApotheekApp.Domain.Models;
 
 namespace ApotheekApp.Business.Services
 {
-    public class MedicineService(IMedicineRepository medicineRepository) : IMedicineService
+    public class MedicineService : IMedicineService
     {
-        private readonly IMedicineRepository _medicineRepository = medicineRepository;
+        private readonly IMedicineRepository _medicineRepository;
+
+        public MedicineService(IMedicineRepository medicineRepository)
+        {
+            _medicineRepository = medicineRepository;
+        }
 
         public async Task<IEnumerable<Medicine>?> GetAllAsync()
         {
