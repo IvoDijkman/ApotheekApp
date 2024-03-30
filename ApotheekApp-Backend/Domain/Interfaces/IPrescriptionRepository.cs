@@ -8,6 +8,8 @@ namespace ApotheekApp.Domain.Interfaces
 
         public Task SaveChangesAsync();
 
+        public Task<IEnumerable<Prescription>> GetAllAsync();
+
         public Task<Prescription> GetById(int id);
     }
 }

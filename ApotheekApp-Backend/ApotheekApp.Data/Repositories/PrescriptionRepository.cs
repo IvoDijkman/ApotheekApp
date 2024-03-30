@@ -20,11 +20,10 @@ namespace ApotheekApp.Data.Repositories
             return prescription;
         }
 
-        public async Task SaveChangesAsync() => await _dataContext.SaveChangesAsync();
+        public async Task<IEnumerable<Prescription>> GetAllAsync() => await _dataContext.Set<Prescription>().ToListAsync();
 
-        public async Task<Prescription> GetById(int id)
-        {
-            return await _dataContext.Prescription.FirstOrDefaultAsync(p => p.Id == id);
-        }
+        public async Task<Prescription> GetById(int id) => await _dataContext.Prescription.FirstOrDefaultAsync(p => p.Id == id);
+
+        public async Task SaveChangesAsync() => await _dataContext.SaveChangesAsync();
     }
 }
