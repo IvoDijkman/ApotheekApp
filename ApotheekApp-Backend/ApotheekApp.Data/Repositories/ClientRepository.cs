@@ -1,8 +1,9 @@
-﻿using ApotheekApp.Domain.Models;
+﻿using ApotheekApp.Domain.Interfaces;
+using ApotheekApp.Domain.Models;
 
 namespace ApotheekApp.Data.Repositories
 {
-    public class ClientRepository(DataContext dataContext)
+    public class ClientRepository(DataContext dataContext) : IClientRepository
     {
         public async Task<Client> CreateClientAsync(Client client)
         {

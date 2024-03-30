@@ -18,7 +18,7 @@ namespace ApotheekApp.Api
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
             builder.Services.AddScoped<IClientService, ClientService>();
-            builder.Services.AddScoped<ClientRepository>();
+            builder.Services.AddScoped<IClientRepository, ClientRepository>();
             builder.Services.AddScoped<IEmployeeService, EmployeeService>();
             builder.Services.AddScoped<EmployeeRepository>();
             builder.Services.AddScoped<IMedicineService, MedicineService>();
