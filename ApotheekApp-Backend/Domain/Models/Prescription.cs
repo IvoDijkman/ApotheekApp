@@ -5,7 +5,7 @@ namespace ApotheekApp.Domain.Models
     public class Prescription
     {
         [Key]
-        public required int Id { get; set; }
+        public int Id { get; set; }
 
         public required int ClientId { get; set; }
         public required string Name { get; set; }

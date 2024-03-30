@@ -16,6 +16,10 @@ namespace ApotheekApp.Business.Services
 
         public async Task<PrescriptionDto> CreateAsync(Prescription prescription)
         {
+            if (_prescriptionRepository.GetAllAsync().Result.Any(p => p.Name == prescription.Name))
+            {
+                throw new Exception("Prescription allready exists");
+            }
             await _prescriptionRepository.CreatePrescriptionAsync(prescription);
             await _prescriptionRepository.SaveChangesAsync();
             return prescription.MapToPrescriptionDto();
