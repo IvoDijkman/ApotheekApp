@@ -10,6 +10,7 @@ namespace ApotheekApp.Data
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Medicine> Medicine { get; set; }
         public DbSet<Allergy> Allergy { get; set; }
+        public DbSet<Prescription> Prescription { get; set; }
 
         public DataContext() : base()
         {
@@ -36,6 +37,9 @@ namespace ApotheekApp.Data
             modelBuilder.Entity<Client>().Navigation(c => c.Allergies).AutoInclude();
 
             modelBuilder.Entity<Employee>();
+
+            modelBuilder.Entity<Prescription>()
+                .HasMany(p => p.Medicines).WithMany().UsingEntity(e => e.ToTable("PrescriptionMedicines"));
 
             modelBuilder.Entity<Medicine>()
                 .HasKey(e => e.Id);
