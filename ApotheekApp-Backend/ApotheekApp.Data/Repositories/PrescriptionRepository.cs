@@ -16,7 +16,6 @@ namespace ApotheekApp.Data.Repositories
         public async Task<Prescription> CreatePrescriptionAsync(Prescription prescription)
         {
             await _dataContext.AddAsync(prescription);
-            await _dataContext.SaveChangesAsync();
             return prescription;
         }
 

@@ -14,6 +14,13 @@ namespace ApotheekApp.Business.Services
             _prescriptionRepository = prescriptionRepository;
         }
 
+        public async Task<PrescriptionDto> CreateAsync(Prescription prescription)
+        {
+            await _prescriptionRepository.CreatePrescriptionAsync(prescription);
+            await _prescriptionRepository.SaveChangesAsync();
+            return prescription.MapToPrescriptionDto();
+        }
+
         public async Task<IEnumerable<PrescriptionDto>> GetAllAsync()
         {
             List<PrescriptionDto> prescriptionDtos = new();
