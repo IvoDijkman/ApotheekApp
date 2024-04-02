@@ -1,6 +1,4 @@
-﻿using ApotheekApp.Business.Extensions;
-using ApotheekApp.Domain.Dtos;
-using ApotheekApp.Domain.Interfaces;
+﻿using ApotheekApp.Domain.Interfaces;
 using ApotheekApp.Domain.Models;
 
 namespace ApotheekApp.Business.Services
@@ -14,32 +12,28 @@ namespace ApotheekApp.Business.Services
             _prescriptionRepository = prescriptionRepository;
         }
 
-        public async Task<PrescriptionDto> CreateAsync(Prescription prescription)
+        public async Task<Prescription> CreateAsync(Prescription prescription)
         {
-            if (_prescriptionRepository.GetAllAsync().Result.Any(p => p.Name == prescription.Name))
-            {
-                throw new Exception("Prescription allready exists");
-            }
             await _prescriptionRepository.CreatePrescriptionAsync(prescription);
             await _prescriptionRepository.SaveChangesAsync();
-            return prescription.MapToPrescriptionDto();
+            return prescription;
         }
 
-        public async Task<IEnumerable<PrescriptionDto>> GetAllAsync()
+        public async Task<IEnumerable<Prescription>> GetAllAsync()
         {
-            List<PrescriptionDto> prescriptionDtos = new();
+            List<Prescription> prescriptionDtos = new();
             var prescriptions = await _prescriptionRepository.GetAllAsync();
             foreach (Prescription prescription in prescriptions)
             {
-                prescriptionDtos.Add(prescription.MapToPrescriptionDto());
+                prescriptionDtos.Add(prescription);
             }
             return prescriptionDtos;
         }
 
-        public async Task<PrescriptionDto> GetByIdAsync(int id)
+        public async Task<Prescription> GetByIdAsync(int id)
         {
             Prescription prescription = await _prescriptionRepository.GetById(id);
-            return prescription.MapToPrescriptionDto();
+            return prescription;
         }
 
         public async Task ToggleIsCollectedAsync(int id)

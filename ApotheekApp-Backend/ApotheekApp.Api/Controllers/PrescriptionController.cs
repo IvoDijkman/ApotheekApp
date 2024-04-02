@@ -1,5 +1,4 @@
-﻿using ApotheekApp.Domain.Dtos;
-using ApotheekApp.Domain.Interfaces;
+﻿using ApotheekApp.Domain.Interfaces;
 using ApotheekApp.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,23 +15,32 @@ namespace ApotheekApp.Api.Controllers
             _prescriptionService = prescriptionService;
         }
 
-        [HttpPost("post")]
-        public async Task<IActionResult> PostPrescription(PrescriptionDto prescriptionDto)
+        [HttpPost]
+        public async Task<IActionResult> PostPrescription(Prescription prescription)
         {
             try
             {
-                Prescription prescription = new() { ClientId = prescriptionDto.ClientId, Name = prescriptionDto.Name, Description = prescriptionDto.Description };
                 return Ok(await _prescriptionService.CreateAsync(prescription));
             }
             catch (Exception ex) { return BadRequest(ex.Message); }
         }
 
-        [HttpGet("getall")]
+        [HttpGet]
         public async Task<IActionResult> GetAllPrescriptions()
         {
             try
             {
                 return Ok(await _prescriptionService.GetAllAsync());
+            }
+            catch (Exception ex) { return BadRequest(ex.Message); }
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetAllPrescriptions(int id)
+        {
+            try
+            {
+                return Ok(await _prescriptionService.GetByIdAsync(id));
             }
             catch (Exception ex) { return BadRequest(ex.Message); }
         }
