@@ -50,17 +50,17 @@ User Story:
 Max is a 25 year old intern apothecary who has been playing video games for a lot of his life, owns a laptop and the latest iPhone. 
 In addition, he likes using apps on his phone for certain appliances in the house.
 He drinks his coffee with 25 ml of oatmilk. 
-As Max I want to search prescriptions and find the clients their medicine.
+As Max I want to search prescriptions, clients and find the medicine they need and if it's advisable or another medicine is needed. 
 
 Julia is a 45 year old experienced apothecary who likes shopping online and using her phone. 
 She has a daughter who is very tech savvy, so she has picked up a thing or two. 
 She has a lot of patience with technology, as she has grown up with older technology. She drinks coffee on the daily. 
-As Julia I want to be able to search prescriptions that are for the appropriate client so I can provide them the medicine.
+As Julia I want to be able to search prescriptions, clients and find the medicine they need and if it's advisable or another medicine is needed. 
 
 Lex is 65, nearing retirement and is not a big fan of technology. 
 He has very little patience for it and finds it difficult to understand so gets easily frustrated. 
 He doesn't own a computer. 
-As Lex I want to be able to easily search prescriptions for clients and find the medicine they need. 
+As Lex I want to be able to easily search prescriptions, clients and find the medicine they need and if it's advisable or another medicine is needed. 
 
 Robin is a 37 year old admin, very fond of spreadsheets and schedules. They even make spreadsheets for their cats.
 They like solving problems for friends by offering advice. 
