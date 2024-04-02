@@ -7,7 +7,7 @@ namespace ApotheekApp.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PrescriptionController : BaseController
+    public class PrescriptionController : BaseController s
     {
         private readonly IPrescriptionService _prescriptionService;
 
