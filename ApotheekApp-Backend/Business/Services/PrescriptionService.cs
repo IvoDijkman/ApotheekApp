@@ -27,7 +27,7 @@ namespace ApotheekApp.Business.Services
             {
                 prescriptionDtos.Add(prescription);
             }
-            return prescriptionDtos;
+            return prescriptionDtos.OrderBy(p => p.IssueDate);
         }
 
         public async Task<Prescription> GetByIdAsync(int id)
