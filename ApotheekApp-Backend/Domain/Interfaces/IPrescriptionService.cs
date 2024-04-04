@@ -12,13 +12,19 @@ namespace ApotheekApp.Domain.Interfaces
         Task<Prescription> CreateAsync(Prescription prescription);
 
         /// <summary>
-        /// Gets all prescriptions by order date
+        /// Gets all prescriptions.
         /// </summary>
         /// <returns></returns>
         Task<IEnumerable<Prescription>> GetAllAsync();
 
         /// <summary>
-        /// Gets prescription by Id
+        /// Gets all Open prescriptions: All presciptions where IsCollected is set to false.
+        /// </summary>
+        /// <returns></returns>
+        Task<IEnumerable<Prescription>> GetAllOpenPrescriptionsAsync();
+
+        /// <summary>
+        /// Gets prescription by Id.
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>

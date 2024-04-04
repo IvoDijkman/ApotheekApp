@@ -19,16 +19,9 @@ namespace ApotheekApp.Business.Services
             return prescription;
         }
 
-        public async Task<IEnumerable<Prescription>> GetAllAsync()
-        {
-            List<Prescription> prescriptionDtos = new();
-            var prescriptions = await _prescriptionRepository.GetAllAsync();
-            foreach (Prescription prescription in prescriptions)
-            {
-                prescriptionDtos.Add(prescription);
-            }
-            return prescriptionDtos.OrderBy(p => p.IssueDate);
-        }
+        public async Task<IEnumerable<Prescription>> GetAllAsync() => await _prescriptionRepository.GetAllAsync();
+
+        public async Task<IEnumerable<Prescription>> GetAllOpenPrescriptionsAsync() => await _prescriptionRepository.GetAllOpenPrescriptionsAsync();
 
         public async Task<Prescription> GetByIdAsync(int id)
         {

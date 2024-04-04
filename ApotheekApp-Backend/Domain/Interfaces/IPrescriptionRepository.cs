@@ -18,10 +18,16 @@ namespace ApotheekApp.Domain.Interfaces
         public Task SaveChangesAsync();
 
         /// <summary>
-        /// Gets all prescriptions.
+        /// Gets all prescriptions ordered by IssueDate.
         /// </summary>
         /// <returns></returns>
         public Task<IEnumerable<Prescription>> GetAllAsync();
+
+        /// <summary>
+        /// Gets all open prescriptions ordered by IssueDate.
+        /// </summary>
+        /// <returns></returns>
+        public Task<IEnumerable<Prescription>> GetAllOpenPrescriptionsAsync();
 
         /// <summary>
         /// Get prescription by Id.
