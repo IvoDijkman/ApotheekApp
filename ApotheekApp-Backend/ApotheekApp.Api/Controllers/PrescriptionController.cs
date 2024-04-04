@@ -16,7 +16,7 @@ namespace ApotheekApp.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> PostPrescription(Prescription prescription)
+        public async Task<IActionResult> Create(Prescription prescription)
         {
             try
             {
@@ -26,7 +26,7 @@ namespace ApotheekApp.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllPrescriptions()
+        public async Task<IActionResult> GetAll()
         {
             try
             {
@@ -35,8 +35,18 @@ namespace ApotheekApp.Api.Controllers
             catch (Exception ex) { return BadRequest(ex.Message); }
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetAllOpen()
+        {
+            try
+            {
+                return Ok(await _prescriptionService.GetAllOpenPrescriptionsAsync());
+            }
+            catch (Exception ex) { return BadRequest(ex.Message); }
+        }
+
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetAllPrescriptions(int id)
+        public async Task<IActionResult> GetById(int id)
         {
             try
             {
