@@ -35,28 +35,33 @@ namespace ApotheekApp.Data
         {
             return new List<Medicine>()
             {
-                new Medicine(){Name = "Diclofenac",
+                new Medicine(){ Id = 1,
+                    Name = "Diclofenac",
                     Description = "Diclofenac staat op plek 1 als meest gebruikte geneesmiddel in Nederland. De medicatie wordt voorgeschreven als pijnstiller met een ontstekingsremmende werking. ",
                     Manual = "12 keer per dag ondersteboven innemen",
                     Type = "pijnstiller",
                     Stock = 11},
-                new Medicine(){Name = "",
+                new Medicine(){Id = 2,
+                    Name = "",
                     Description = "",
                     Manual = "", Type = "",
                     Stock =
-                    11},
-                new Medicine(){Name = "",
+                    61},
+                new Medicine(){Id = 3,
+                    Name = "",
                     Description = "",
                     Manual = "", Type = "",
-                    Stock = 11},
-                new Medicine(){Name = "",
+                    Stock = 14},
+                new Medicine(){Id = 4,
+                    Name = "",
                     Description = "",
                     Manual = "", Type = "",
-                    Stock = 11},
-                new Medicine(){Name = "",
+                    Stock = 181},
+                new Medicine(){Id = 5,
+                    Name = "",
                     Description = "",
                     Manual = "", Type = "",
-                    Stock = 11},
+                    Stock = 78},
             };
         }
 
@@ -65,11 +70,21 @@ namespace ApotheekApp.Data
         {
             return new List<Allergy>()
             {
-                new Allergy(){ Name = "Hooikoorts", Description = "Voor veel mensen een hele bekende allergie: hooikoorts. Hooikoorts staat ook wel bekend als graspollen- of boombollenallergie. Maar liefst 1 op de 8 mensen in Europa hebben last van hooikoorts. De klachten kunnen overeenkomen met die van een verkoudheid, maar het grootste verschil is dat de klachten van hooikoorts een langere periode duren. Waar een verkoudheid binnen enkele dagen weg is, kunnen de klachten van hooikoorts weken aanhouden."},
-                new Allergy(){ Name = "Huisstofmijtallergie", Description = "Hierbij worden de klachten veroorzaakt door een reactie op de huisstofmijt. Dit zijn witte beestjes die tot de familie van de spinachtigen behoren. De klachten worden vooral veroorzaakt door de uitwerpselen van de beestjes. De meest voorkomende klachten zijn niesbuien, tranende en jeukende ogen en vermoeidheid."},
-                new Allergy(){ Name = "Voedselallergie", Description = "Bij een voedselallergie worden de klachten veroorzaakt door een reactie van het afweersysteem op specifieke voedingsmiddelen. Het lichaam maakt hierbij antistoffen aan tegen bepaalde eiwitten in voedingsmiddelen, waardoor er een allergische reactie ontstaat. De meest voorkomende voedselallergieën zijn koemelkallergie en notenallergie."},
-                new Allergy(){ Name = "Huisdierenallergie", Description = "Veel mensen denken dat een huisdierenallergie wordt veroorzaakt door de haren van dieren. Dit is echter een onjuiste aanname. Bij een allergie voor huisdieren worden de klachten namelijk veroorzaakt door een reactie op huidschilfers (epitheel) en veren van dieren. Hieruit ontstaan vervolgens de symptomen die bij deze allergie horen, zoals hoofdpijn, jeukende ogen en niesbuien. De allergenen van een kat zijn het sterkt, waardoor de klachten bij een kattenallergie het meest voorkomt in vergelijking met andere dieren."},
-                new Allergy(){ Name = "", Description = ""},
+                new Allergy(){ Id = 1,
+                    Name = "Hooikoorts",
+                    Description = "Voor veel mensen een hele bekende allergie: hooikoorts. Hooikoorts staat ook wel bekend als graspollen- of boombollenallergie. Maar liefst 1 op de 8 mensen in Europa hebben last van hooikoorts. De klachten kunnen overeenkomen met die van een verkoudheid, maar het grootste verschil is dat de klachten van hooikoorts een langere periode duren. Waar een verkoudheid binnen enkele dagen weg is, kunnen de klachten van hooikoorts weken aanhouden."},
+                new Allergy(){ Id = 2,
+                    Name = "Huisstofmijtallergie",
+                    Description = "Hierbij worden de klachten veroorzaakt door een reactie op de huisstofmijt. Dit zijn witte beestjes die tot de familie van de spinachtigen behoren. De klachten worden vooral veroorzaakt door de uitwerpselen van de beestjes. De meest voorkomende klachten zijn niesbuien, tranende en jeukende ogen en vermoeidheid."},
+                new Allergy(){ Id = 3,
+                    Name = "Voedselallergie",
+                    Description = "Bij een voedselallergie worden de klachten veroorzaakt door een reactie van het afweersysteem op specifieke voedingsmiddelen. Het lichaam maakt hierbij antistoffen aan tegen bepaalde eiwitten in voedingsmiddelen, waardoor er een allergische reactie ontstaat. De meest voorkomende voedselallergieën zijn koemelkallergie en notenallergie."},
+                new Allergy(){ Id = 4,
+                    Name = "Huisdierenallergie",
+                    Description = "Veel mensen denken dat een huisdierenallergie wordt veroorzaakt door de haren van dieren. Dit is echter een onjuiste aanname. Bij een allergie voor huisdieren worden de klachten namelijk veroorzaakt door een reactie op huidschilfers (epitheel) en veren van dieren. Hieruit ontstaan vervolgens de symptomen die bij deze allergie horen, zoals hoofdpijn, jeukende ogen en niesbuien. De allergenen van een kat zijn het sterkt, waardoor de klachten bij een kattenallergie het meest voorkomt in vergelijking met andere dieren."},
+                new Allergy(){ Id = 5,
+                    Name = "",
+                    Description = ""},
             };
         }
     }
