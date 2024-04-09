@@ -25,13 +25,13 @@ namespace ApotheekApp.Business.Services
 
         public async Task<Prescription> GetByIdAsync(int id)
         {
-            Prescription prescription = await _prescriptionRepository.GetById(id);
+            Prescription prescription = await _prescriptionRepository.GetByIdAsync(id);
             return prescription;
         }
 
         public async Task ToggleIsCollectedAsync(int id)
         {
-            Prescription prescription = await _prescriptionRepository.GetById(id);
+            Prescription prescription = await _prescriptionRepository.GetByIdAsync(id);
             prescription.IsCollected = !prescription.IsCollected;
             await _prescriptionRepository.SaveChangesAsync();
         }

@@ -36,7 +36,7 @@ namespace ApotheekApp.Api.Controllers
         }
 
         [HttpGet]
-        [Route("Open")]
+        [Route("open")]
         public async Task<IActionResult> GetAllOpen()
         {
             try

@@ -34,6 +34,6 @@ namespace ApotheekApp.Domain.Interfaces
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public Task<Prescription> GetById(int id);
+        public Task<Prescription> GetByIdAsync(int id);
     }
 }
