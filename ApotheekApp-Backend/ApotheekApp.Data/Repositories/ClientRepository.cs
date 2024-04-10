@@ -20,7 +20,7 @@ namespace ApotheekApp.Data.Repositories
 
         public IEnumerable<Client> GetAllClients() => dataContext.Set<Client>();
 
-        public Client GetClientByIdAsync(string id) =>
+        public Client GetClientById(string id) =>
             dataContext.Set<Client>().Where(x => x.Id == id).FirstOrDefault() ?? throw new KeyNotFoundException();
 
         public Client GetClientByNameAsync(string lastname, DateTime dob, string? firstname)

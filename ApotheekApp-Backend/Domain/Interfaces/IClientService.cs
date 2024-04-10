@@ -9,7 +9,7 @@ namespace ApotheekApp.Domain.Interfaces
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public Client GetClientByIdAsync(string id);
+        public Client GetClientById(string id);
 
         /// <summary>
         /// Search Clients by lastname, dob and ?firstname.

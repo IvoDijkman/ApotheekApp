@@ -29,7 +29,7 @@ namespace ApotheekApp.Business.Services
 
         public IEnumerable<Client> GetAllClients() => _clientRepository.GetAllClients();
 
-        public Client GetClientByIdAsync(string id) => _clientRepository.GetClientByIdAsync(id);
+        public Client GetClientById(string id) => _clientRepository.GetClientById(id);
 
         public Client GetClientByNameAsync(string lastname, DateTime dob, string? firstname) =>
             _clientRepository.GetClientByNameAsync(lastname, dob, firstname);
