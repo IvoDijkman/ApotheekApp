@@ -1,5 +1,6 @@
 ﻿using ApotheekApp.Domain.Interfaces;
 using ApotheekApp.Domain.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace ApotheekApp.Business.Services
 {
@@ -19,9 +20,9 @@ namespace ApotheekApp.Business.Services
             return prescription;
         }
 
-        public async Task<IEnumerable<Prescription>> GetAllAsync() => await _prescriptionRepository.GetAllAsync();
+        public async Task<IEnumerable<Prescription>> GetAllAsync() => await _prescriptionRepository.GetAll().OrderBy(p => p.Id).ToListAsync();
 
-        public async Task<IEnumerable<Prescription>> GetAllOpenPrescriptionsAsync() => await _prescriptionRepository.GetAllOpenPrescriptionsAsync();
+        public async Task<IEnumerable<Prescription>> GetAllOpenPrescriptionsAsync() => await _prescriptionRepository.GetAll().OrderBy(p => p.Id).Where(p => !p.IsCollected).ToListAsync();
 
         public async Task<Prescription> GetByIdAsync(int id)
         {
@@ -29,11 +30,12 @@ namespace ApotheekApp.Business.Services
             return prescription;
         }
 
-        public async Task ToggleIsCollectedAsync(int id)
+        public async Task<bool> ToggleIsCollectedAsync(int id)
         {
             Prescription prescription = await _prescriptionRepository.GetByIdAsync(id);
             prescription.IsCollected = !prescription.IsCollected;
             await _prescriptionRepository.SaveChangesAsync();
+            return prescription.IsCollected;
         }
     }
 }

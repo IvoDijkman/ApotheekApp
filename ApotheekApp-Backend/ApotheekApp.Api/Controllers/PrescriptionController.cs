@@ -55,5 +55,15 @@ namespace ApotheekApp.Api.Controllers
             }
             catch (Exception ex) { return BadRequest(ex.Message); }
         }
+
+        [HttpPut]
+        public async Task<IActionResult> ToggeleIsCollected(int id)
+        {
+            try
+            {
+                return Ok(await _prescriptionService.ToggleIsCollectedAsync(id));
+            }
+            catch (Exception ex) { return BadRequest(ex.Message); }
+        }
     }
 }

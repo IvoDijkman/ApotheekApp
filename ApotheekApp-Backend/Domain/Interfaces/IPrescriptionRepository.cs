@@ -21,13 +21,7 @@ namespace ApotheekApp.Domain.Interfaces
         /// Gets all prescriptions ordered by IssueDate.
         /// </summary>
         /// <returns></returns>
-        public Task<IEnumerable<Prescription>> GetAllAsync();
-
-        /// <summary>
-        /// Gets all open prescriptions ordered by IssueDate.
-        /// </summary>
-        /// <returns></returns>
-        public Task<IEnumerable<Prescription>> GetAllOpenPrescriptionsAsync();
+        public IQueryable<Prescription> GetAll();
 
         /// <summary>
         /// Get prescription by Id.

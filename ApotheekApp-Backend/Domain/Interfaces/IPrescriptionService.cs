@@ -35,6 +35,6 @@ namespace ApotheekApp.Domain.Interfaces
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        Task ToggleIsCollectedAsync(int id);
+        Task<bool> ToggleIsCollectedAsync(int id);
     }
 }

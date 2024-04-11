@@ -19,9 +19,7 @@ namespace ApotheekApp.Data.Repositories
             return prescription;
         }
 
-        public async Task<IEnumerable<Prescription>> GetAllAsync() => await _dataContext.Set<Prescription>().ToListAsync();
-
-        public async Task<IEnumerable<Prescription>> GetAllOpenPrescriptionsAsync() => await _dataContext.Set<Prescription>().Where(p => !p.IsCollected).ToListAsync();
+        public IQueryable<Prescription> GetAll() => _dataContext.Set<Prescription>().AsQueryable();
 
         public async Task<Prescription> GetByIdAsync(int id) => await _dataContext.Prescription.FirstAsync(p => p.Id == id);
 
