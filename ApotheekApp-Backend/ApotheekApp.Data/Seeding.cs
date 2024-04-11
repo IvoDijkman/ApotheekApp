@@ -45,8 +45,7 @@ namespace ApotheekApp.Data
                     Name = "",
                     Description = "",
                     Manual = "", Type = "",
-                    Stock =
-                    61},
+                    Stock = 61},
                 new Medicine(){Id = 3,
                     Name = "",
                     Description = "",
