@@ -57,6 +57,7 @@ namespace ApotheekApp.Api.Controllers
         }
 
         [HttpPut]
+        [Route("toggle/{id}")]
         public async Task<IActionResult> ToggeleIsCollected(int id)
         {
             try

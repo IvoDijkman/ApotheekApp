@@ -18,7 +18,7 @@ namespace ApotheekApp.Domain.Interfaces
         public Task SaveChangesAsync();
 
         /// <summary>
-        /// Gets all prescriptions ordered by IssueDate.
+        /// Gets all prescriptions as Queryable, can add link queries and end with .ToListAsync()
         /// </summary>
         /// <returns></returns>
         public IQueryable<Prescription> GetAll();
