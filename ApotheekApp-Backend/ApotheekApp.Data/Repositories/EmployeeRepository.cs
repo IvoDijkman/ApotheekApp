@@ -1,13 +1,14 @@
-﻿using ApotheekApp.Domain.Models;
+﻿using ApotheekApp.Domain.Interfaces;
+using ApotheekApp.Domain.Models;
 
 namespace ApotheekApp.Data.Repositories
 {
-    public class EmployeeRepository(DataContext dataContext)
+    public class EmployeeRepository(DataContext dataContext) : IEmployeeRepository
     {
         public Employee GetEmployeeByIdAsync(string id) =>
         dataContext.Set<Employee>().Where(x => x.Id == id).FirstOrDefault() ?? throw new KeyNotFoundException();
 
-        public Employee GetEmployeeByNameAsync(string lastname, DateTime dob, string? firstname)
+        public Employee GetEmployeeByNameAsync(string lastname, string? firstname)
         {
             if (firstname == "")
                 return (Employee)dataContext.Set<Employee>().Where(x => x.LastName == lastname);
@@ -15,13 +16,13 @@ namespace ApotheekApp.Data.Repositories
             return (Employee)dataContext.Set<Employee>().Where(x => x.LastName == lastname && x.FirstName == firstname);
         }
 
-        public async Task<Employee> CreateEmployeeAsync(Employee employee)
+        public Employee CreateEmployee(Employee employee)
         {
-            await dataContext.AddAsync(employee);
+            dataContext.Add(employee);
             return employee;
         }
 
-        public Employee UpdateEmployeeAsync(Employee employee)
+        public Employee UpdateEmployee(Employee employee)
         {
             dataContext.Update(employee);
             return employee;
@@ -29,7 +30,7 @@ namespace ApotheekApp.Data.Repositories
 
         public IEnumerable<Employee> GetAllEmployees() => dataContext.Set<Employee>();
 
-        public void DeleteEmployeeAsync(string id)
+        public void DeleteEmployee(string id)
         {
             Employee? toDelete = dataContext.Set<Employee>().Where(x => x.Id == id).FirstOrDefault();
             if (toDelete != null)
