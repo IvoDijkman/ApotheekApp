@@ -31,7 +31,7 @@ namespace ApotheekApp.Data.Repositories
             return (Client)dataContext.Set<Client>().Where(x => x.DateOfBirth == dob && x.LastName == lastname && x.FirstName == firstname);
         }
 
-        public  Client UpdateClient(Client client)
+        public Client UpdateClient(Client client)
         {
             dataContext.Update(client);
             return client;
