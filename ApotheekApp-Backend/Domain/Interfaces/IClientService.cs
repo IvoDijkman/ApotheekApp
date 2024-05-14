@@ -18,7 +18,7 @@ namespace ApotheekApp.Domain.Interfaces
         /// <param name="dob"></param>
         /// <param name="firstname"></param>
         /// <returns></returns>
-        public Client GetClientByNameAsync(string lastname, DateTime dob, string? firstname);
+        public Client GetClientByName(string lastname, DateTime dob, string? firstname);
 
         /// <summary>
         /// Create a new Client.

@@ -40,15 +40,18 @@ namespace ApotheekApp.Api.Controllers
                 return BadRequest(ex.Message);
             }
         }
-        /*        [HttpGet]
-                public IActionResult GetClientsByName(ClientName)
-                {
-                    try
-                    {
-                        return Ok(_clientService)
-                    }
-                }*/
-
+        [HttpGet]
+        public IActionResult GetClientsByName(string lastname, DateTime dob, string? firstname)
+        {
+            try
+            {
+                return Ok(_clientService.GetClientByName(lastname, dob, firstname));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
         [HttpPost]
         public async Task<IActionResult> CreateClient(Client client)
         {
