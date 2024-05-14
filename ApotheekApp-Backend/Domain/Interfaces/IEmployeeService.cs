@@ -9,35 +9,29 @@ namespace ApotheekApp.Domain.Interfaces
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public Employee GetEmployeeByIdAsync(int id);
+        public Employee GetEmployeeByIdAsync(string id);
 
         /// <summary>
-        /// Get Employees by first name
+        /// Get Employees by lastname,  ?firstname
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
-        public Employee GetEmployeeByNameAsync(string name);
+        public Employee GetEmployeeByNameAsync(string lastname, string? firstname);
 
         /// <summary>
         /// Create a new Employee
         /// </summary>
         /// <param name="employee"></param>
         /// <returns></returns>
-        public Task<Employee> CreateEmployeeAsync(Employee employee);
+        public Employee CreateEmployee(Employee employee);
 
         /// <summary>
         /// Update an existing Employee
         /// </summary>
         /// <param name="employee"></param>
         /// <returns></returns>
-        public Task<Employee> UpdateEmployeeAsync(Employee employee);
+        public Task<Employee> UpdateEmployee(Employee employee);
 
-        /// <summary>
-        /// Search Employee
-        /// </summary>
-        /// <param name="query"></param>
-        /// <returns></returns>
-        public IEnumerable<Employee> SearchEmployees(string query);
 
         /// <summary>
         /// Get list of all Employees
@@ -50,6 +44,6 @@ namespace ApotheekApp.Domain.Interfaces
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public Task DeleteEmployeeAsync(int id);
+        public Task DeleteEmployee(string id);
     }
 }
