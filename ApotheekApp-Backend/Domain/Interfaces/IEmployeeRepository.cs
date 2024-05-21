@@ -14,7 +14,7 @@ namespace ApotheekApp.Domain.Interfaces
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public Employee GetEmployeeByIdAsync(string id);
+        public Task<Employee?> GetEmployeeByIdAsync(string id);
 
         /// <summary>
         /// Search for employee by lastname, ?firstname
@@ -23,7 +23,7 @@ namespace ApotheekApp.Domain.Interfaces
         /// <param name="dob"></param>
         /// <param name="firstname"></param>
         /// <returns></returns>
-        public Employee GetEmployeeByNameAsync(string lastname, string? firstname);
+        public Task<Employee?> GetEmployeeByNameAsync(string lastname, string? firstname);
 
         /// <summary>
         /// Create employee

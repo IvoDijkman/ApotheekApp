@@ -1,19 +1,20 @@
 ﻿using ApotheekApp.Domain.Interfaces;
 using ApotheekApp.Domain.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace ApotheekApp.Data.Repositories
 {
     public class EmployeeRepository(DataContext dataContext) : IEmployeeRepository
     {
-        public Employee GetEmployeeByIdAsync(string id) =>
-        dataContext.Set<Employee>().Where(x => x.Id == id).FirstOrDefault() ?? throw new KeyNotFoundException();
+        public Task<Employee?> GetEmployeeByIdAsync(string id) =>
+        dataContext.Set<Employee>().Where(x => x.Id == id).FirstOrDefaultAsync() ?? throw new KeyNotFoundException();
 
-        public Employee GetEmployeeByNameAsync(string lastname, string? firstname)
+        public async Task<Employee?> GetEmployeeByNameAsync(string lastname, string? firstname)
         {
             if (firstname == "")
-                return (Employee)dataContext.Set<Employee>().Where(x => x.LastName == lastname);
+                return await dataContext.Set<Employee>().SingleOrDefaultAsync(x => x.LastName == lastname);
 
-            return (Employee)dataContext.Set<Employee>().Where(x => x.LastName == lastname && x.FirstName == firstname);
+            return await dataContext.Set<Employee>().SingleOrDefaultAsync(x => x.LastName == lastname && x.FirstName == firstname);
         }
 
         public Employee CreateEmployee(Employee employee)
