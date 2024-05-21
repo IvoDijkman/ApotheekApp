@@ -13,7 +13,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApotheekApp.Api", "Apotheek
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApotheekApp.Data", "ApotheekApp.Data\ApotheekApp.Data.csproj", "{FB72198A-2D8F-40D2-A7A1-6A00D8B2D7F1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApotheekApp.Tests", "Tests\ApotheekApp.Tests.csproj", "{D7DA6902-CD19-4843-9196-E074D0E4678D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApotheekApp.Tests", "Tests\ApotheekApp.Tests.csproj", "{D7DA6902-CD19-4843-9196-E074D0E4678D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4AAA86E4-1528-4715-A0C0-00349FF20737}"
+	ProjectSection(SolutionItems) = preProject
+		appsettings.json = appsettings.json
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
