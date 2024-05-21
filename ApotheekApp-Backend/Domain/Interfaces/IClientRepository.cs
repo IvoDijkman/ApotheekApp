@@ -37,7 +37,7 @@ namespace ApotheekApp.Domain.Interfaces
         /// <param name="dob"></param>
         /// <param name="firstname"></param>
         /// <returns></returns>
-        public Client GetClientByName(string lastname, DateTime dob, string? firstname);
+        public Task<Client?> GetClientByName(string lastname, DateTime dob, string? firstname);
 
         /// <summary>
         /// Update an existing Client.
