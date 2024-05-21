@@ -26,7 +26,7 @@ namespace ApotheekApp.Tests
             collection.AddDbContext<DataContext>(
                 options =>
                     options
-                        .UseSqlServer()//TODO: add your connection string
+                        .UseSqlServer()); //TODO: add your own test db for now
             );
             collection.AddScoped<IClientService, ClientService>();
             collection.AddScoped<IEmployeeService, EmployeeService>();
