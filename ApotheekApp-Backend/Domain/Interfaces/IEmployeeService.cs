@@ -9,14 +9,14 @@ namespace ApotheekApp.Domain.Interfaces
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public Employee GetEmployeeByIdAsync(string id);
+        public Task<Employee?> GetEmployeeByIdAsync(string id);
 
         /// <summary>
         /// Get Employees by lastname,  ?firstname
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
-        public Employee GetEmployeeByNameAsync(string lastname, string? firstname);
+        public Task<Employee?> GetEmployeeByNameAsync(string lastname, string? firstname);
 
         /// <summary>
         /// Create a new Employee
