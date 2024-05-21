@@ -11,7 +11,8 @@ namespace ApotheekApp.Api.Controllers
     public class ClientController : BaseController
     {
         private readonly IClientService _clientService;
-        public ClientController(IClientService clientService) 
+
+        public ClientController(IClientService clientService)
         {
             _clientService = clientService;
         }
@@ -28,6 +29,7 @@ namespace ApotheekApp.Api.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
         [HttpGet]
         public IActionResult GetClients(string clientId)
         {
@@ -40,6 +42,7 @@ namespace ApotheekApp.Api.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
         [HttpGet]
         public IActionResult GetClientsByName(string lastname, DateTime dob, string? firstname)
         {
@@ -52,6 +55,7 @@ namespace ApotheekApp.Api.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
         [HttpPost]
         public async Task<IActionResult> CreateClient(Client client)
         {
@@ -65,6 +69,7 @@ namespace ApotheekApp.Api.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
         [HttpPut]
         public async Task<IActionResult> UpdateClient(Client client)
         {
@@ -74,9 +79,10 @@ namespace ApotheekApp.Api.Controllers
             }
             catch (Exception ex)
             {
-                return NotFound(ex);
+                return NotFound(ex.Message);
             }
         }
+
         [HttpDelete]
         public async Task<IActionResult> DeleteClient(string id)
         {
