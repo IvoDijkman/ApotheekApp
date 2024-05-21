@@ -30,6 +30,7 @@ namespace ApotheekApp.Tests
             );
             collection.AddScoped<IClientService, ClientService>();
             collection.AddScoped<IEmployeeService, EmployeeService>();
+            collection.AddScoped<IEmployeeRepository, EmployeeRepository>();
             collection.AddScoped<IMedicineService, MedicineService>();
             //collection.AddScoped<IPrescriptionService, PrescriptionService>();
             collection.AddScoped<UserManager<AppUser>>();
