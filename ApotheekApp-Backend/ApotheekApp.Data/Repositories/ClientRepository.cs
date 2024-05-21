@@ -1,6 +1,5 @@
 ﻿using ApotheekApp.Domain.Interfaces;
 using ApotheekApp.Domain.Models;
-using Microsoft.EntityFrameworkCore;
 
 namespace ApotheekApp.Data.Repositories
 {
@@ -12,7 +11,7 @@ namespace ApotheekApp.Data.Repositories
             return client;
         }
 
-        public void DeleteClientAsync(string id)
+        public void DeleteClient(string id)
         {
             Client? toDelete = dataContext.Set<Client>().Where(x => x.Id == id).FirstOrDefault();
             if (toDelete != null)
@@ -21,10 +20,10 @@ namespace ApotheekApp.Data.Repositories
 
         public IEnumerable<Client> GetAllClients() => dataContext.Set<Client>();
 
-        public async Task<Client> GetClientByIdAsync(string id) =>
-          await dataContext.Set<Client>().Where(x => x.Id == id).FirstOrDefaultAsync() ?? throw new KeyNotFoundException();
+        public Client GetClientById(string id) =>
+            dataContext.Set<Client>().Where(x => x.Id == id).FirstOrDefault() ?? throw new KeyNotFoundException();
 
-        public Client GetClientByNameAsync(string lastname, DateTime dob, string? firstname)
+        public Client GetClientByName(string lastname, DateTime dob, string? firstname)
         {
             if (firstname == "")
                 return (Client)dataContext.Set<Client>().Where(x => x.DateOfBirth == dob && x.LastName == lastname);
@@ -32,12 +31,12 @@ namespace ApotheekApp.Data.Repositories
             return (Client)dataContext.Set<Client>().Where(x => x.DateOfBirth == dob && x.LastName == lastname && x.FirstName == firstname);
         }
 
-        public Client UpdateClientAsync(Client client)
+        public Client UpdateClient(Client client)
         {
             dataContext.Update(client);
             return client;
         }
 
-        public async Task SaveChanges() => await dataContext.SaveChangesAsync();
+        public async Task SaveChangesAsync() => await dataContext.SaveChangesAsync();
     }
 }

@@ -15,30 +15,30 @@ namespace ApotheekApp.Business.Services
 
         public async Task<Client> CreateClientAsync(Client client)
         {
-            ArgumentNullException.ThrowIfNull(client);
+            //ArgumentNullException.ThrowIfNull(client);
             await _clientRepository.CreateClientAsync(client);
-            await _clientRepository.SaveChanges();
+            await _clientRepository.SaveChangesAsync();
             return client;
         }
 
         public async Task DeleteClientAsync(string id)
         {
-            _clientRepository.DeleteClientAsync(id);
-            await _clientRepository.SaveChanges();
+            _clientRepository.DeleteClient(id);
+            await _clientRepository.SaveChangesAsync();
         }
 
         public IEnumerable<Client> GetAllClients() => _clientRepository.GetAllClients();
 
-        public async Task<Client> GetClientByIdAsync(string id) => await _clientRepository.GetClientByIdAsync(id);
+        public Client GetClientById(string id) => _clientRepository.GetClientById(id);
 
-        public Client GetClientByNameAsync(string lastname, DateTime dob, string? firstname) =>
-            _clientRepository.GetClientByNameAsync(lastname, dob, firstname);
+        public Client GetClientByName(string lastname, DateTime dob, string? firstname) =>
+            _clientRepository.GetClientByName(lastname, dob, firstname);
 
         public async Task<Client> UpdateClientAsync(Client client)
         {
-            ArgumentNullException.ThrowIfNull(client);
-            _clientRepository.UpdateClientAsync(client);
-            await _clientRepository.SaveChanges();
+            //ArgumentNullException.ThrowIfNull(client);
+            _clientRepository.UpdateClient(client);
+            await _clientRepository.SaveChangesAsync();
             return client;
         }
     }
