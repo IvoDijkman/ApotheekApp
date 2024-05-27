@@ -9,7 +9,7 @@ namespace ApotheekApp.Domain.Interfaces
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public Client GetClientByIdAsync(string id);
+        public Client GetClientById(string id);
 
         /// <summary>
         /// Search Clients by lastname, dob and ?firstname.
@@ -18,7 +18,7 @@ namespace ApotheekApp.Domain.Interfaces
         /// <param name="dob"></param>
         /// <param name="firstname"></param>
         /// <returns></returns>
-        public Client GetClientByNameAsync(string lastname, DateTime dob, string? firstname);
+        public Client GetClientByName(string lastname, DateTime dob, string? firstname);
 
         /// <summary>
         /// Create a new Client.
