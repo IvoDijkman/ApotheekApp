@@ -4,18 +4,52 @@ namespace ApotheekApp.Domain.Interfaces
 {
     public interface IClientRepository
     {
+        /// <summary>
+        /// Creates a new Client.
+        /// </summary>
+        /// <param name="client"></param>
+        /// <returns></returns>
         public Task<Client> CreateClientAsync(Client client);
 
-        public void DeleteClientAsync(string id);
+        /// <summary>
+        /// Deletes a Client using the id.
+        /// </summary>
+        /// <param name="id"></param>
+        public void DeleteClient(string id);
 
+        /// <summary>
+        /// Gets a list of all Clients.
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<Client> GetAllClients();
 
-        public Client GetClientByIdAsync(string id);
+        /// <summary>
+        /// Searches for a Client by its id.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public Client GetClientById(string id);
 
-        public Client GetClientByNameAsync(string lastname, DateTime dob, string? firstname);
+        /// <summary>
+        /// Search for a Client by lastname, dob, ?firstname.
+        /// </summary>
+        /// <param name="lastname"></param>
+        /// <param name="dob"></param>
+        /// <param name="firstname"></param>
+        /// <returns></returns>
+        public Client GetClientByName(string lastname, DateTime dob, string? firstname);
 
-        public Client UpdateClientAsync(Client client);
+        /// <summary>
+        /// Update an existing Client.
+        /// </summary>
+        /// <param name="client"></param>
+        /// <returns></returns>
+        public Client UpdateClient(Client client);
 
-        public Task SaveChanges();
+        /// <summary>
+        /// Save changes to db.
+        /// </summary>
+        /// <returns></returns>
+        public Task SaveChangesAsync();
     }
 }
