@@ -30,4 +30,8 @@
     <ProjectReference Include="..\Business\ApotheekApp.Business.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="PrescriptionServiceTests\" />
+  </ItemGroup>
+
 </Project>

@@ -1,9 +1,11 @@
 ﻿using ApotheekApp.Domain.Interfaces;
 using ApotheekApp.Domain.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Diagnostics.CodeAnalysis;
 
 namespace ApotheekApp.Data.Repositories
 {
+    [ExcludeFromCodeCoverage]
     public class PrescriptionRepository : IPrescriptionRepository
     {
         private readonly DataContext _dataContext;
