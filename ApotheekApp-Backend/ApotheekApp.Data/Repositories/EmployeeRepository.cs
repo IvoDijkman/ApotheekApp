@@ -6,8 +6,8 @@ namespace ApotheekApp.Data.Repositories
 {
     public class EmployeeRepository(DataContext dataContext) : IEmployeeRepository
     {
-        public Task<Employee?> GetEmployeeByIdAsync(string id) =>
-        dataContext.Set<Employee>().Where(x => x.Id == id).FirstOrDefaultAsync() ?? throw new KeyNotFoundException();
+        public async Task<Employee?> GetEmployeeByIdAsync(string id) =>
+        await dataContext.Set<Employee>().Where(x => x.Id == id).FirstOrDefaultAsync() ?? throw new KeyNotFoundException();
 
         public async Task<Employee?> GetEmployeeByNameAsync(string lastname, string? firstname)
         {

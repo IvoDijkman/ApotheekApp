@@ -27,11 +27,11 @@ namespace ApotheekApp.Business.Services
 
         public IEnumerable<Employee> GetAllEmployees() => _employeeRepository.GetAllEmployees();
 
-        public Task<Employee?> GetEmployeeByIdAsync(string id) => _employeeRepository.GetEmployeeByIdAsync(id);
+        public async Task<Employee?> GetEmployeeByIdAsync(string id) => await _employeeRepository.GetEmployeeByIdAsync(id);
 
 
-        public Task<Employee?> GetEmployeeByNameAsync(string lastname, string? firstname)
-            => _employeeRepository.GetEmployeeByNameAsync(lastname, firstname);
+        public async Task<Employee?> GetEmployeeByNameAsync(string lastname, string? firstname)
+            => await _employeeRepository.GetEmployeeByNameAsync(lastname, firstname);
 
         public async Task<Employee> UpdateEmployee(Employee employee)
         {
