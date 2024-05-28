@@ -38,6 +38,6 @@ namespace ApotheekApp.Data.Repositories
                 dataContext.Remove(toDelete);
         }
 
-        public async Task SaveChanges() => await dataContext.SaveChangesAsync();
+        public async Task SaveChangesAsync() => await dataContext.SaveChangesAsync();
     }
 }
