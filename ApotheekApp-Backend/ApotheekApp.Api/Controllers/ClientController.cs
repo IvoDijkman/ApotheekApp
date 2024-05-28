@@ -48,7 +48,7 @@ namespace ApotheekApp.Api.Controllers
         {
             try
             {
-                return Ok(_clientService.GetClientByName(lastname, dob, firstname));
+                return Ok(_clientService.GetClientByNameAsync(lastname, dob, firstname));
             }
             catch (Exception ex)
             {
