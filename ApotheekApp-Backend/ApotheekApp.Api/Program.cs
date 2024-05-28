@@ -20,7 +20,7 @@ namespace ApotheekApp.Api
             builder.Services.AddScoped<IClientService, ClientService>();
             builder.Services.AddScoped<IClientRepository, ClientRepository>();
             builder.Services.AddScoped<IEmployeeService, EmployeeService>();
-            builder.Services.AddScoped<EmployeeRepository>();
+            builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
             builder.Services.AddScoped<IMedicineService, MedicineService>();
             builder.Services.AddScoped<IMedicineRepository, MedicineRepository>();
             builder.Services.AddDbContext<DataContext>();
@@ -36,7 +36,7 @@ namespace ApotheekApp.Api
 
             app.UseHttpsRedirection();
 
-            app.UseAuthorization();
+            //app.UseAuthorization();
 
             app.MapControllers();
 
