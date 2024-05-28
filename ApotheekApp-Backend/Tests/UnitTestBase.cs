@@ -32,7 +32,7 @@ namespace ApotheekApp.Tests
             collection.AddDbContext<DataContext>(
             options =>
             options
-                        .UseSqlServer()); //TODO: add your own test db for now
+                        .UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=ApotheekDatabaseTest;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=True")); //TODO: add your own test db for now
             collection.AddScoped<IClientService, ClientService>();
             collection.AddScoped<IEmployeeService, EmployeeService>();
             collection.AddScoped<IEmployeeRepository, EmployeeRepository>();
