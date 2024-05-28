@@ -55,6 +55,6 @@ namespace ApotheekApp.Domain.Interfaces
         /// Save changes to db.
         /// </summary>
         /// <returns></returns>
-        public Task SaveChanges();
+        public Task SaveChangesAsync();
     }
 }

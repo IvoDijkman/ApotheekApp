@@ -11,18 +11,18 @@ namespace ApotheekApp.Business.Services
         {
             _employeeRepository = employeeRepository;
         }
-        public Employee CreateEmployee(Employee employee)
+        public async Task<Employee> CreateEmployeeAsync(Employee employee)
         {
             ArgumentNullException.ThrowIfNull(employee);
             _employeeRepository.CreateEmployee(employee);
-            _employeeRepository.SaveChanges();
+            await _employeeRepository.SaveChangesAsync();
             return employee;
         }
 
-        public async Task DeleteEmployee(string id)
+        public async Task DeleteEmployeeAsync(string id)
         {
             _employeeRepository.DeleteEmployee(id);
-            await _employeeRepository.SaveChanges();
+            await _employeeRepository.SaveChangesAsync();
         }
 
         public IEnumerable<Employee> GetAllEmployees() => _employeeRepository.GetAllEmployees();
@@ -37,7 +37,7 @@ namespace ApotheekApp.Business.Services
         {
             ArgumentNullException.ThrowIfNull(employee);
             _employeeRepository.UpdateEmployee(employee);
-            await _employeeRepository.SaveChanges();
+            await _employeeRepository.SaveChangesAsync();
             return employee;
         }
     }
