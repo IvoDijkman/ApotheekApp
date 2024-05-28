@@ -24,7 +24,7 @@ namespace ApotheekApp.Data.Repositories
         public Client GetClientById(string id) =>
             dataContext.Set<Client>().Where(x => x.Id == id).FirstOrDefault() ?? throw new KeyNotFoundException();
 
-        public async Task<Client?> GetClientByName(string lastname, DateTime dob, string? firstname)
+        public async Task<Client?> GetClientByNameAsync(string lastname, DateTime dob, string? firstname)
         {
             if (firstname == "")
                 return await dataContext.Set<Client>().SingleOrDefaultAsync(x => x.DateOfBirth == dob && x.LastName == lastname);
