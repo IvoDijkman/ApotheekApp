@@ -30,6 +30,7 @@ namespace ApotheekApp.Api.Controllers
         }
 
         [HttpGet]
+        [Route("id")]
         public async Task<IActionResult> GetEmployeeById(string employeeId)
         {
             try
@@ -44,6 +45,7 @@ namespace ApotheekApp.Api.Controllers
         }
 
         [HttpGet]
+        [Route("name")]
         public async Task<IActionResult> GetEmployeeByName(string lastName, string? firstName)
         {
             try
