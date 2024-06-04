@@ -58,12 +58,13 @@ namespace ApotheekApp.Api.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateEmployee(Employee employee)
+        public async Task<IActionResult> CreateEmployee(Employee employee)
         {
             try
             {
                 if (employee == null) { return NotFound("No employee was found"); }
-                return Ok(_employeeService.CreateEmployee(employee));
+                var employeeCreated = await _employeeService.CreateEmployeeAsync(employee);
+                return Ok(employeeCreated);
             }
             catch (Exception ex)
             {
@@ -90,7 +91,7 @@ namespace ApotheekApp.Api.Controllers
         {
             try
             {
-                await _employeeService.DeleteEmployee(employeeId);
+                await _employeeService.DeleteEmployeeAsync(employeeId);
                 return Ok();
             }
             catch (Exception ex)
