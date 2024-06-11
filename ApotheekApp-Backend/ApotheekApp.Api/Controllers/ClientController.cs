@@ -31,12 +31,12 @@ namespace ApotheekApp.Api.Controllers
         }
 
         [HttpGet]
-        [Route("{string}")]
+        [Route("{clientId}")]
         public async Task<IActionResult> GetClients(string clientId)
         {
             try
             {
-                return Ok(await _clientService.GetClientById(clientId));
+                return Ok(await _clientService.GetClientByIdAsync(clientId));
             }
             catch (Exception ex)
             {
