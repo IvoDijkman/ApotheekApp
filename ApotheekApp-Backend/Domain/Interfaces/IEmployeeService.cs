@@ -23,7 +23,7 @@ namespace ApotheekApp.Domain.Interfaces
         /// </summary>
         /// <param name="employee"></param>
         /// <returns></returns>
-        public Employee CreateEmployee(Employee employee);
+        public Task<Employee> CreateEmployeeAsync(Employee employee);
 
         /// <summary>
         /// Update an existing Employee
@@ -44,6 +44,6 @@ namespace ApotheekApp.Domain.Interfaces
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public Task DeleteEmployee(string id);
+        public Task DeleteEmployeeAsync(string id);
     }
 }

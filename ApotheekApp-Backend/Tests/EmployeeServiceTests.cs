@@ -45,7 +45,7 @@ namespace ApotheekApp.Tests
         public async Task Should_DeleteItemFromDb()
         {
             var toDelete = _employee.LastName;
-            await _service.DeleteEmployee("Blablabla");
+            await _service.DeleteEmployeeAsync("Blablabla");
             var deletedEmployee = await _service.GetEmployeeByNameAsync(toDelete, "TestFirstName1");
             Assert.Null(deletedEmployee);
         }
