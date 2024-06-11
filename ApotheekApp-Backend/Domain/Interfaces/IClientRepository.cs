@@ -28,7 +28,7 @@ namespace ApotheekApp.Domain.Interfaces
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public Task<Client> GetClientById(string id);
+        public Task<Client?> GetClientById(string id);
 
         /// <summary>
         /// Search for a Client by lastname, dob, ?firstname.
