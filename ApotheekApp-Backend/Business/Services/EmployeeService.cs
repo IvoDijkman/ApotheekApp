@@ -15,8 +15,6 @@ namespace ApotheekApp.Business.Services
             throw new NotImplementedException();
         }
 
-        s
-
         public IEnumerable<Employee> GetAllEmployees()
         {
             throw new NotImplementedException();
