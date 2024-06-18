@@ -12,21 +12,19 @@ namespace ApotheekApp.Tests
         private Prescription _prescription2;
         private Prescription _prescription3;
 
-        [Theory]
-        [InlineData("Blablabla", "TestFirstName1")]
-        public async Task Should_GetAllAsync(string id, string expected)
+        [Fact]
+        public async Task Should_GetAll()
         {
-            //var employee = await _service.GetEmployeeByIdAsync(id);
-            //string employeeName = employee!.FirstName;
-            //Assert.Equal(employeeName, expected);
-            Assert.False(true);
+            var allPrescriptions = _service.GetAll();
+            int count = allPrescriptions.Result.Count();
+            Assert.Equal(3, count);
         }
 
         [Fact]
-        public async Task Should_GetAllOpenPrescriptionsAsync()
+        public async Task Should_GetAllOpenPrescriptions()
         {
-            var openPrescriptions = await _service.GetAllOpenPrescriptionsAsync();
-            int count = openPrescriptions.Count();
+            var openPrescriptions = _service.GetAllOpenPrescriptions();
+            int count = openPrescriptions.Result.Count();
             Assert.Equal(2, count);
         }
 
@@ -53,25 +51,28 @@ namespace ApotheekApp.Tests
             {
                 Name = "TestPrescription1",
                 IsCollected = false,
-                Description = "pft",
+                Description = "TestPrescription1 Descr",
                 ClientId = 1,
             };
             _prescription2 = new Prescription
             {
                 Name = "TestPrescription2",
                 IsCollected = false,
-                Description = "pft",
+                Description = "TestPrescription2 Descr",
                 ClientId = 2,
             };
             _prescription3 = new Prescription
             {
                 Name = "TestPrescription3",
                 IsCollected = true,
-                Description = "pft",
+                Description = "TestPrescription3 Desc",
                 ClientId = 1,
             };
 
             context.Add(_prescription1);
+            context.Add(_prescription2);
+            context.Add(_prescription3);
+
             return Task.CompletedTask;
         }
     }

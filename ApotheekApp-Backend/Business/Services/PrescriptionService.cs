@@ -21,7 +21,7 @@ namespace ApotheekApp.Business.Services
 
         public async Task<IEnumerable<Prescription>> GetAll() => _prescriptionRepository.GetAll().OrderBy(p => p.Id);
 
-        public async Task<IEnumerable<Prescription>> GetAllOpenPrescriptions() => _prescriptionRepository.GetAll().OrderBy(p => p.Id).Where(p => !p.IsCollected);
+        public async Task<IEnumerable<Prescription>> GetAllOpenPrescriptions() => _prescriptionRepository.GetAll().Where(p => !p.IsCollected).OrderBy(p => p.Id);
 
         public async Task<Prescription> GetByIdAsync(int id)
         {
