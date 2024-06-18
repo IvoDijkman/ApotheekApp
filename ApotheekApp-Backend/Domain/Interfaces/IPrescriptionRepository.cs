@@ -21,7 +21,7 @@ namespace ApotheekApp.Domain.Interfaces
         /// Gets all prescriptions as Queryable, can add link queries and end with .ToListAsync()
         /// </summary>
         /// <returns></returns>
-        public IQueryable<Prescription> GetAll();
+        public IEnumerable<Prescription> GetAll();
 
         /// <summary>
         /// Get prescription by Id.

@@ -15,13 +15,13 @@ namespace ApotheekApp.Domain.Interfaces
         /// Gets all prescriptions.
         /// </summary>
         /// <returns></returns>
-        Task<IEnumerable<Prescription>> GetAllAsync();
+        Task<IEnumerable<Prescription>> GetAll();
 
         /// <summary>
         /// Gets all Open prescriptions: All presciptions where IsCollected is set to false.
         /// </summary>
         /// <returns></returns>
-        Task<IEnumerable<Prescription>> GetAllOpenPrescriptionsAsync();
+        Task<IEnumerable<Prescription>> GetAllOpenPrescriptions();
 
         /// <summary>
         /// Gets prescription by Id.
