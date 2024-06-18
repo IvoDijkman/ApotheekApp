@@ -80,5 +80,14 @@ namespace ApotheekApp.Data
                     Description = "Wanneer je huiduitslag krijgt van rechtstreeks contact met iets in je omgeving zou dit een allergische reactie kunnen zijn. Dan is je immuunsysteem hierbij betrokken. Je zou ook last kunnen hebben van een niet-allergische reactie als gevolg van prikkelende stoffen. Dan spreken we officieel niet van een allergie, maar van een overgevoeligheid. Vaak is het een combinatie van beide. De bekendste aandoening als gevolg van contactreacties zijn netelroos en eczeem. De medische naam voor eczeem is dermatitis. Wanneer een specifiek allergeen de oorzaak is van het eczeem dan heet dat allergische contactdermatitis."},
             };
         }
+
+        public static List<Prescription> ListOfPrescriptions()
+        {
+            return new List<Prescription>()
+                {
+                    new Prescription(){ Id = 1, ClientId = 1, Description = "Prescription 1 Description", Name = "Prescription 1", IsCollected = true},
+                    new Prescription(){ Id = 2, ClientId = 2, Description = "Prescription 2 Description", Name = "Prescription 2", IsCollected = false},
+                };
+        }
     }
 }

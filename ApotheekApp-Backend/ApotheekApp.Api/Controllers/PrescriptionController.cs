@@ -30,7 +30,7 @@ namespace ApotheekApp.Api.Controllers
         {
             try
             {
-                return Ok(await _prescriptionService.GetAllAsync());
+                return Ok(await _prescriptionService.GetAll());
             }
             catch (Exception ex) { return BadRequest(ex.Message); }
         }
@@ -41,7 +41,7 @@ namespace ApotheekApp.Api.Controllers
         {
             try
             {
-                return Ok(await _prescriptionService.GetAllOpenPrescriptionsAsync());
+                return Ok(await _prescriptionService.GetAllOpenPrescriptions());
             }
             catch (Exception ex) { return BadRequest(ex.Message); }
         }

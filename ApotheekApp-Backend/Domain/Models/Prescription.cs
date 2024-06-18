@@ -12,6 +12,6 @@ namespace ApotheekApp.Domain.Models
         public required string Description { get; set; }
         public DateTime IssueDate { get; } = DateTime.UtcNow;
         public bool IsCollected { get; set; } = false;
-        public IEnumerable<Medicine> Medicines { get; set; } = Enumerable.Empty<Medicine>();
+        public ICollection<Medicine> Medicines { get; set; }
     }
 }

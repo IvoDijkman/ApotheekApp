@@ -50,6 +50,7 @@ namespace ApotheekApp.Data
             modelBuilder.Entity<Employee>().HasData(Seeding.ListOfEmployees());
             modelBuilder.Entity<Medicine>().HasData(Seeding.ListOfMedicines());
             modelBuilder.Entity<Allergy>().HasData(Seeding.ListOfAllergies());
+            modelBuilder.Entity<Prescription>().HasData(Seeding.ListOfPrescriptions());
 
             base.OnModelCreating(modelBuilder);
         }
