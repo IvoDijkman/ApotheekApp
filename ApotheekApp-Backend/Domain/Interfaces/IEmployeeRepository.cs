@@ -1,49 +1,60 @@
 ﻿using ApotheekApp.Domain.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace ApotheekApp.Domain.Interfaces
 {
-    public interface IEmployeeService
+    public interface IEmployeeRepository
     {
         /// <summary>
-        /// Get Employees by Id
+        /// Get employee by id
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
         public Task<Employee?> GetEmployeeByIdAsync(string id);
 
         /// <summary>
-        /// Get Employees by lastname,  ?firstname
+        /// Search for employee by lastname, ?firstname
         /// </summary>
-        /// <param name="name"></param>
+        /// <param name="lastname"></param>
+        /// <param name="dob"></param>
+        /// <param name="firstname"></param>
         /// <returns></returns>
         public Task<Employee?> GetEmployeeByNameAsync(string lastname, string? firstname);
 
         /// <summary>
-        /// Create a new Employee
+        /// Create employee
         /// </summary>
         /// <param name="employee"></param>
         /// <returns></returns>
-        public Task<Employee> CreateEmployeeAsync(Employee employee);
+        public Employee CreateEmployee(Employee employee);
 
         /// <summary>
-        /// Update an existing Employee
+        /// Update employee
         /// </summary>
         /// <param name="employee"></param>
         /// <returns></returns>
-        public Task<Employee> UpdateEmployee(Employee employee);
-
+        public Employee UpdateEmployee(Employee employee);
 
         /// <summary>
-        /// Get list of all Employees
+        /// Get a list of all employees
         /// </summary>
         /// <returns></returns>
         public IEnumerable<Employee> GetAllEmployees();
 
         /// <summary>
-        /// Delete Employee by Id
+        /// Delete an employee
         /// </summary>
-        /// <param name="id"></param>
         /// <returns></returns>
-        public Task DeleteEmployeeAsync(string id);
+        public void DeleteEmployee(string id);
+
+        /// <summary>
+        /// Save changes to db.
+        /// </summary>
+        /// <returns></returns>
+        public Task SaveChangesAsync();
     }
 }

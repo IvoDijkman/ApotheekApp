@@ -31,11 +31,12 @@ namespace ApotheekApp.Api.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetClients(string clientId)
+        [Route("{clientId}")]
+        public async Task<IActionResult> GetClients(string clientId)
         {
             try
             {
-                return Ok(_clientService.GetClientById(clientId));
+                return Ok(await _clientService.GetClientByIdAsync(clientId));
             }
             catch (Exception ex)
             {
@@ -44,11 +45,12 @@ namespace ApotheekApp.Api.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetClientsByName(string lastname, DateTime dob, string? firstname)
+        [Route("name")]
+        public async Task<IActionResult> GetClientsByName(string lastname, DateTime dob, string? firstname)
         {
             try
             {
-                return Ok(_clientService.GetClientByName(lastname, dob, firstname));
+                return Ok(await _clientService.GetClientByNameAsync(lastname, dob, firstname));
             }
             catch (Exception ex)
             {

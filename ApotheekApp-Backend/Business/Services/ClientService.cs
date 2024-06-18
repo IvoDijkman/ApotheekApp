@@ -29,10 +29,10 @@ namespace ApotheekApp.Business.Services
 
         public IEnumerable<Client> GetAllClients() => _clientRepository.GetAllClients();
 
-        public Client GetClientById(string id) => _clientRepository.GetClientById(id);
+        public async Task<Client?> GetClientByIdAsync(string id) => await _clientRepository.GetClientByIdAsync(id);
 
-        public Client GetClientByName(string lastname, DateTime dob, string? firstname) =>
-            _clientRepository.GetClientByName(lastname, dob, firstname);
+        public async Task<Client?> GetClientByNameAsync(string lastname, DateTime dob, string? firstname) =>
+            await _clientRepository.GetClientByNameAsync(lastname, dob, firstname);
 
         public async Task<Client> UpdateClientAsync(Client client)
         {
