@@ -1,16 +1,20 @@
 ﻿using ApotheekApp.Business.Services;
 using ApotheekApp.Data;
+using ApotheekApp.Data.Repositories;
 using ApotheekApp.Domain.Interfaces;
 using ApotheekApp.Domain.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.VisualStudio.TestPlatform.ObjectModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static Microsoft.Extensions.Logging.EventSource.LoggingEventSource;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace ApotheekApp.Tests
 {
@@ -18,21 +22,24 @@ namespace ApotheekApp.Tests
     {
         protected IServiceProvider _services;
         private DataContext? _dataContext;
+        //public IConfiguration Configuration { get; }
 
         public UnitTestBase()
         {
+            //Configuration = configuration;
+            //string? connectionString = configuration.GetConnectionString("TestConnection");
             var collection = new ServiceCollection();
-
             collection.AddDbContext<DataContext>(
-                options =>
-                    options
-                        .UseSqlServer()//TODO: add your connection string
-            );
+            options =>
+            options
+                        .UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=ApotheekDatabaseTest;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=True")); //TODO: add your own test db for now
             collection.AddScoped<IClientService, ClientService>();
             collection.AddScoped<IEmployeeService, EmployeeService>();
+            collection.AddScoped<IEmployeeRepository, EmployeeRepository>();
             collection.AddScoped<IMedicineService, MedicineService>();
             //collection.AddScoped<IPrescriptionService, PrescriptionService>();
             collection.AddScoped<UserManager<AppUser>>();
+            //collection.AddSingleton<IConfiguration>(configuration);
             collection.AddIdentity<AppUser, IdentityRole>().AddEntityFrameworkStores<DataContext>();
             collection.AddLogging();
 
