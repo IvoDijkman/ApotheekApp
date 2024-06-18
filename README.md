@@ -1,5 +1,6 @@
 This README contains multiple parts:
 - Definition of Done
+- FrontEnd installs
 - Agreements we made concerning code and workflow
 - Why we are doing this project
 
@@ -8,37 +9,70 @@ Definition of Done
 - The application builds
 - User story is completely viable
 
+Are you new to this project? Did you just join the group and are you looking to work on the frontend?
+
+Here's a guide for what to install to make it work:
+
+Check if you have the correct version of <a href="Nodejs.org/en">Node.js</a> (with long term support, ^20)
+
+npm install next@latest react@latest react-dom@latest -> Installs <a href="https://react.dev/learn/installation">React</a>
+
+npm install -D tailwindcss
+npx tailwindcss init -> Installs <a href="https://tailwindcss.com/docs/installation">Tailwind</a>
+
+npm install react-router-dom -> <a href="https://reactrouter.com/en/main/start/tutorial">React router DOM</a>
+
+In VS Code, in Extensions, install Prettier - Code formatter - extension
+
+Then, npm install -D prettier prettier-plugin-tailwindcss -> Installs <a href="https://github.com/tailwindlabs/prettier-plugin-tailwindcss">Tailwind Prettier</a>
+
+npm install axios -> Installs <a href="https://www.npmjs.com/package/axios#package-manager">Axios</a>
 
 Code conventions:
 We use Async in method names if applicable
+
 UpdateMedicineAsync()
 Methods with only one return are written with a lambda expression
+
 GetAll() => _repo.GetAll()
 Use DTOs for all appropriate models. Each developer handles their own DTOs that are used in the API.
+
 Routes for WebAPI: None unless you are creating multiple of the same one eg. multiple GetById().
-SaveChanges() bij Update() en Delete().
+
+SaveChanges() in Update() and Delete().
+
 Comments are okay but only if they are required for clarity.
+
 Keep methods small (eg. 10 lines of code)
+
 Workflow: before you make a pull request, first pull dev into your branch, check it builds and fix if necessary.
+
 Workflow for peer review: always test that it builds before approving. If it does not, alert original creator.
+
 Exceptions are caught in the API/frontend, and thrown in the Repo.
+
 Interfaces are in a separate folder.
 
 Coding examples:
+
 Extensions:
 ValidatorExtensions.cs
 Contains all extension methods concerning validation
+
 Constructors:
+
 Use 'old' constructors:
 public ClientRepository(IClientService _clientService)
 {
 _clientService = clientService;
 }
+
 General methods:
 public async Task UpdateMedicineAsync()
 {
 _dataContext.Medicines.Add()
 }
+
 Unit tests:
 [Fact]
 public void Should_Return_Medicine()
