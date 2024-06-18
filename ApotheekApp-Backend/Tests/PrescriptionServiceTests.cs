@@ -8,57 +8,70 @@ namespace ApotheekApp.Tests
     [Collection("Database Tests")]
     public class PrescriptionServiceTests : UnitTestBase<IPrescriptionService>
     {
-        private Employee _employee;
-        private Employee _employee2;
-
-        [Fact]
-        public async Task Should_GetAllEmployees()
-        {
-            var employees = _service.GetAllEmployees();
-            Assert.Equal(2, employees.Count());
-        }
+        private Prescription _prescription1;
+        private Prescription _prescription2;
+        private Prescription _prescription3;
 
         [Theory]
         [InlineData("Blablabla", "TestFirstName1")]
-        public async Task Should_GetEmployeeById(string id, string expected)
+        public async Task Should_GetAllAsync(string id, string expected)
         {
-            var employee = await _service.GetEmployeeByIdAsync(id);
-            string employeeName = employee!.FirstName;
-            Assert.Equal(employeeName, expected);
+            //var employee = await _service.GetEmployeeByIdAsync(id);
+            //string employeeName = employee!.FirstName;
+            //Assert.Equal(employeeName, expected);
+            Assert.False(true);
         }
 
         [Fact]
-        public async Task Should_GetEmployeeByName()
+        public async Task Should_GetAllOpenPrescriptionsAsync()
         {
-            Employee? foundEmployee = await _service.GetEmployeeByNameAsync("TestLastName1", "TestFirstName1");
-            string employeeName = foundEmployee!.LastName;
-            Assert.Equal(_employee.LastName, employeeName);
+            var openPrescriptions = await _service.GetAllOpenPrescriptionsAsync();
+            int count = openPrescriptions.Count();
+            Assert.Equal(2, count);
         }
 
         [Fact]
-        public async Task Should_DeleteItemFromDb()
+        public async Task Should_GetByIdAsync()
         {
-            var toDelete = _employee.LastName;
-            await _service.DeleteEmployeeAsync("Blablabla");
-            var deletedEmployee = await _service.GetEmployeeByNameAsync(toDelete, "TestFirstName1");
-            Assert.Null(deletedEmployee);
+            Prescription test = await _service.GetByIdAsync(1);
+            Assert.Equal(test.Id, 1);
+            Assert.Equal(test.Name, "TestPrescription1");
+        }
+
+        [Fact]
+        public async Task Should_ToggleIsCollectedAsync()
+        {
+            bool IsCollected = false;
+            Assert.False(IsCollected);
+            IsCollected = await _service.ToggleIsCollectedAsync(1);
+            Assert.True(IsCollected);
         }
 
         protected override Task SetupDatabase(DataContext context)
         {
-            _employee = new Employee
+            _prescription1 = new Prescription
             {
-                FirstName = "TestFirstName1",
-                LastName = "TestLastName1",
-                Id = "Blablabla"
+                Name = "TestPrescription1",
+                IsCollected = false,
+                Description = "pft",
+                ClientId = 1,
             };
-            _employee2 = new Employee
+            _prescription2 = new Prescription
             {
-                FirstName = "TestFirstName2",
-                LastName = "TestLastName2"
+                Name = "TestPrescription2",
+                IsCollected = false,
+                Description = "pft",
+                ClientId = 2,
             };
-            context.Add(_employee);
-            context.Add(_employee2);
+            _prescription3 = new Prescription
+            {
+                Name = "TestPrescription3",
+                IsCollected = true,
+                Description = "pft",
+                ClientId = 1,
+            };
+
+            context.Add(_prescription1);
             return Task.CompletedTask;
         }
     }

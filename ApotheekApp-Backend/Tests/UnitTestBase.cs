@@ -5,16 +5,7 @@ using ApotheekApp.Domain.Interfaces;
 using ApotheekApp.Domain.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.VisualStudio.TestPlatform.ObjectModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static Microsoft.Extensions.Logging.EventSource.LoggingEventSource;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace ApotheekApp.Tests
 {
@@ -37,7 +28,8 @@ namespace ApotheekApp.Tests
             collection.AddScoped<IEmployeeService, EmployeeService>();
             collection.AddScoped<IEmployeeRepository, EmployeeRepository>();
             collection.AddScoped<IMedicineService, MedicineService>();
-            //collection.AddScoped<IPrescriptionService, PrescriptionService>();
+            collection.AddScoped<IPrescriptionService, PrescriptionService>();
+            collection.AddScoped<IPrescriptionRepository, PrescriptionRepository>();
             collection.AddScoped<UserManager<AppUser>>();
             //collection.AddSingleton<IConfiguration>(configuration);
             collection.AddIdentity<AppUser, IdentityRole>().AddEntityFrameworkStores<DataContext>();
@@ -90,5 +82,4 @@ namespace ApotheekApp.Tests
             _service = _services.GetRequiredService<T>();
         }
     }
-
 }
