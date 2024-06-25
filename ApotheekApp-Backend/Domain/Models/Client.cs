@@ -1,9 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
 
 namespace ApotheekApp.Domain.Models
 {
     public class Client : AppUser
     {
+        [ExcludeFromCodeCoverage]
         [Key]
         public override string Id { get => base.Id; set => base.Id = value; }
 
