@@ -38,6 +38,15 @@ namespace ApotheekApp.Tests
         private async Task Should_find_a_client_by_name()
         {
             DateTime date = new(2000, 2, 2);
+            Client? client = await _service.GetClientByNameAsync("TestLastName2", date, "");
+
+            Assert.Equal("TestFirstName2", client?.FirstName);
+        }
+
+        [Fact]
+        private async Task Should_find_a_client_by_name_first_and_last()
+        {
+            DateTime date = new(2000, 2, 2);
             Client? client = await _service.GetClientByNameAsync("TestLastName2", date, "TestFirstName2");
 
             Assert.Equal("TestFirstName2", client?.FirstName);
