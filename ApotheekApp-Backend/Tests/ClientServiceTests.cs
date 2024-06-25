@@ -35,7 +35,7 @@ namespace ApotheekApp.Tests
         }
 
         [Fact]
-        private async Task Should_find_a_client_by_name()
+        private async Task Should_find_a_client_by_lastname_and_dob()
         {
             DateTime date = new(2000, 2, 2);
             Client? client = await _service.GetClientByNameAsync("TestLastName2", date, "");
@@ -44,7 +44,7 @@ namespace ApotheekApp.Tests
         }
 
         [Fact]
-        private async Task Should_find_a_client_by_name_first_and_last()
+        private async Task Should_find_a_client_by_firstname_lastname_and_dob()
         {
             DateTime date = new(2000, 2, 2);
             Client? client = await _service.GetClientByNameAsync("TestLastName2", date, "TestFirstName2");

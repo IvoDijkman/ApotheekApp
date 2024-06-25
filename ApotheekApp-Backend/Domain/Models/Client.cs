@@ -3,9 +3,9 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace ApotheekApp.Domain.Models
 {
+    [ExcludeFromCodeCoverage]
     public class Client : AppUser
     {
-        [ExcludeFromCodeCoverage]
         [Key]
         public override string Id { get => base.Id; set => base.Id = value; }
 
