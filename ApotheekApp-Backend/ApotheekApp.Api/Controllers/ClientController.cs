@@ -1,4 +1,5 @@
-﻿using ApotheekApp.Domain.Interfaces;
+﻿using ApotheekApp.Business.Services;
+using ApotheekApp.Domain.Interfaces;
 using ApotheekApp.Domain.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -7,7 +8,7 @@ namespace ApotheekApp.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ClientController : ControllerBase
+    public class ClientController : BaseController
     {
         private readonly IClientService _clientService;
 
@@ -19,41 +20,83 @@ namespace ApotheekApp.Api.Controllers
         [HttpGet]
         public IActionResult GetClients()
         {
-            IEnumerable<Client> clients = _clientService.GetAllClients();
-            if (clients == null) return BadRequest();
-            return Ok(clients);
+            try
+            {
+                return Ok(_clientService.GetAllClients());
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpGet]
-        [Route("{id}")]
-        public async Task<IActionResult> GetClientById(string id) => Ok(await _clientService.GetClientByIdAsync(id));
-
-        [HttpGet]
-        [Route("Search")]
-        public async Task<IActionResult> SearchClients(string lastName, DateTime dob, string? firstName)
+        [Route("{clientId}")]
+        public async Task<IActionResult> GetClients(string clientId)
         {
-            return BadRequest("Not implemented");
+            try
+            {
+                return Ok(await _clientService.GetClientByIdAsync(clientId));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
-        //create
+        [HttpGet]
+        [Route("name")]
+        public async Task<IActionResult> GetClientsByName(string lastname, DateTime dob, string? firstname)
+        {
+            try
+            {
+                return Ok(await _clientService.GetClientByNameAsync(lastname, dob, firstname));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         [HttpPost]
         public async Task<IActionResult> CreateClient(Client client)
         {
-            return BadRequest("Not implemented");
+            try
+            {
+                if (client == null) { return BadRequest("No client was found."); }
+                return Ok(await _clientService.CreateClientAsync(client));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
-        //update
         [HttpPut]
         public async Task<IActionResult> UpdateClient(Client client)
         {
-            return BadRequest("Not implemented");
+            try
+            {
+                return Ok(await _clientService.UpdateClientAsync(client));
+            }
+            catch (Exception ex)
+            {
+                return NotFound(ex.Message);
+            }
         }
 
-        //delete
         [HttpDelete]
-        public IActionResult DeleteClient(string id)
+        public async Task<IActionResult> DeleteClient(string id)
         {
-            return BadRequest("Not implemented");
+            try
+            {
+                await _clientService.DeleteClientAsync(id);
+                return Ok();
+            }
+            catch
+            {
+                return BadRequest("Something went wrong, delete failed.");
+            }
         }
     }
 }

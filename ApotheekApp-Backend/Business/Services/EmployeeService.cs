@@ -1,43 +1,44 @@
-﻿using ApotheekApp.Domain.Interfaces;
+﻿using ApotheekApp.Data.Repositories;
+using ApotheekApp.Domain.Interfaces;
 using ApotheekApp.Domain.Models;
 
 namespace ApotheekApp.Business.Services
 {
     public class EmployeeService : IEmployeeService
     {
-        public Task<Employee> CreateEmployeeAsync(Employee employee)
+        private readonly IEmployeeRepository _employeeRepository;
+        public EmployeeService(IEmployeeRepository employeeRepository)
         {
-            throw new NotImplementedException();
+            _employeeRepository = employeeRepository;
+        }
+        public async Task<Employee> CreateEmployeeAsync(Employee employee)
+        {
+            ArgumentNullException.ThrowIfNull(employee);
+            _employeeRepository.CreateEmployee(employee);
+            await _employeeRepository.SaveChangesAsync();
+            return employee;
         }
 
-        public Task DeleteEmployeeAsync(int id)
+        public async Task DeleteEmployeeAsync(string id)
         {
-            throw new NotImplementedException();
+            _employeeRepository.DeleteEmployee(id);
+            await _employeeRepository.SaveChangesAsync();
         }
 
-        public IEnumerable<Employee> GetAllEmployees()
-        {
-            throw new NotImplementedException();
-        }
+        public IEnumerable<Employee> GetAllEmployees() => _employeeRepository.GetAllEmployees();
 
-        public Employee GetEmployeeByIdAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<Employee?> GetEmployeeByIdAsync(string id) => await _employeeRepository.GetEmployeeByIdAsync(id);
 
-        public Employee GetEmployeeByNameAsync(string name)
-        {
-            throw new NotImplementedException();
-        }
 
-        public IEnumerable<Employee> SearchEmployees(string query)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<Employee?> GetEmployeeByNameAsync(string lastname, string? firstname)
+            => await _employeeRepository.GetEmployeeByNameAsync(lastname, firstname);
 
-        public Task<Employee> UpdateEmployeeAsync(Employee employee)
+        public async Task<Employee> UpdateEmployee(Employee employee)
         {
-            throw new NotImplementedException();
+            ArgumentNullException.ThrowIfNull(employee);
+            _employeeRepository.UpdateEmployee(employee);
+            await _employeeRepository.SaveChangesAsync();
+            return employee;
         }
     }
 }

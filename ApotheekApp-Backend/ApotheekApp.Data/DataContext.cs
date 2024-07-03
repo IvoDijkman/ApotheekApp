@@ -42,6 +42,11 @@ namespace ApotheekApp.Data
 
             modelBuilder.Entity<Allergy>();
 
+            modelBuilder.Entity<Client>().HasData(Seeding.ListOfClients());
+            modelBuilder.Entity<Employee>().HasData(Seeding.ListOfEmployees());
+            modelBuilder.Entity<Medicine>().HasData(Seeding.ListOfMedicines());
+            modelBuilder.Entity<Allergy>().HasData(Seeding.ListOfAllergies());
+
             base.OnModelCreating(modelBuilder);
         }
     }
