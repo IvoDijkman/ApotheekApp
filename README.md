@@ -20,8 +20,6 @@ npm install next@latest react@latest react-dom@latest -> Installs <a href="https
 npm install -D tailwindcss
 npx tailwindcss init -> Installs <a href="https://tailwindcss.com/docs/installation">Tailwind</a>
 
-npm install react-router-dom -> <a href="https://reactrouter.com/en/main/start/tutorial">React router DOM</a>
-
 In VS Code, in Extensions, install Prettier - Code formatter - extension
 
 Then, npm install -D prettier prettier-plugin-tailwindcss -> Installs <a href="https://github.com/tailwindlabs/prettier-plugin-tailwindcss">Tailwind Prettier</a>
