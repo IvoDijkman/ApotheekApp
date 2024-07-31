@@ -17,7 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <p>Hello hello</p>
+        <p>This is the layout.tsx and it works</p>
         {children}
       </body>
     </html>
