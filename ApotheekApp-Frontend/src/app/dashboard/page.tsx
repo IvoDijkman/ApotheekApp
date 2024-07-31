@@ -1,2 +1,7 @@
 export default function Dashboard() {
-    return (<h2>Test dash</h2>)}
+    return (
+        <html lang="en">
+            <div className="fixed top-15 w-52 text-left">
+                <h2>Test dashboard</h2>
+            </div>
+        </html>)}
