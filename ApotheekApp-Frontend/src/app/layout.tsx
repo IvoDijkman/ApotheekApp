@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import PageNotFound from "./page-not-found";
+import Toolbar from "./toolbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,9 +19,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <p>This is the layout.tsx and it works</p>
-        {children}
+        <Toolbar></Toolbar>
+          {children}
       </body>
     </html>
   );
 }
+
+
+
+
+
