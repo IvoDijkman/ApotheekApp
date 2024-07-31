@@ -34,6 +34,7 @@ namespace ApotheekApp.Tests
             options
                         .UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=ApotheekDatabaseTest;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=True")); //TODO: add your own test db for now
             collection.AddScoped<IClientService, ClientService>();
+            collection.AddScoped<IClientRepository, ClientRepository>();
             collection.AddScoped<IEmployeeService, EmployeeService>();
             collection.AddScoped<IEmployeeRepository, EmployeeRepository>();
             collection.AddScoped<IMedicineService, MedicineService>();
@@ -90,5 +91,4 @@ namespace ApotheekApp.Tests
             _service = _services.GetRequiredService<T>();
         }
     }
-
 }
